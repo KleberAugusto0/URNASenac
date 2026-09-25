@@ -5,14 +5,6 @@ eleitores = [
     {"nome" : "Alanys" , "titulo": "004" ,"situacao_voto": False}, 
 ]
 
-
-
-def registrar_voto(self):
-     self.situacao_voto = True
-
-registrar_voto(eleitores[0])
-
-
 for e in eleitores:
      print(e)
 
