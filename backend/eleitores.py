@@ -5,12 +5,12 @@ eleitores = [
     {"nome" : "Alanys" , "titulo": "004" ,"situacao_voto": False}, 
 ]
 
-for e in eleitores:
-     print(e)
+# for e in eleitores:
+#      print(e)
 
-# nao_votaram = [ e for e in eleitores if not e["situacao_voto"]]
+nao_votaram = [ e for e in eleitores if not e["situacao_voto"]]
 
-# for n in nao_votaram:
-#     print(n)
+for n in nao_votaram:
+    print(n)
 
     
