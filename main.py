@@ -1,6 +1,14 @@
-from PySide6.QtWidgets import QLabel, QVBoxLayout,QPushButton,QWidget,QApplication,QFrame
+from PySide6.QtWidgets import (
+    QLabel,
+    QVBoxLayout,
+    QPushButton,
+    QWidget,
+    QApplication
+)
 from PySide6.QtCore import Qt
-import sys,os
+import sys
+import os
+
 
 class MenuUrna(QWidget):
     def __init__(self):
@@ -14,7 +22,7 @@ class MenuUrna(QWidget):
 
         layout.addStretch(1)
         txt_urna = QLabel("Urna Eletrónica")
-        layout.addWidget(txt_urna)
+        layout.addWidget(txt_urna) 
         txt_urna.setAlignment(Qt.AlignmentFlag.AlignCenter) 
 
         btn_zerezima = QPushButton("Rélatorio inicial (Zerézima)")
@@ -31,6 +39,7 @@ class MenuUrna(QWidget):
         btn_relatorio.setFixedSize(250,50)
 
         btn_sair = QPushButton("Sair")
+        btn_sair.setObjectName("btn_sair")
         layout.addWidget(btn_sair,alignment=Qt.AlignmentFlag.AlignCenter)
         btn_sair.setFixedSize(250,50) 
         layout.addStretch(1)
@@ -51,13 +60,23 @@ class MenuUrna(QWidget):
                 pass#Fazer popup para fazer a zerezima primeiro
 
 
-        def relatorio():
-            pass
-
+    def relatorio():
+        
+        pass
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    
+    caminho_estiloMenu = os.path.join(
+        os.path.dirname(__file__),
+        "estilo",
+        "estilo_menu.qss"
+    )
+    app.setStyleSheet(
+        open(caminho_estiloMenu, "r", encoding="utf-8").read()
+    )
+    
     janela = MenuUrna()
     janela.show()
     sys.exit(app.exec())
