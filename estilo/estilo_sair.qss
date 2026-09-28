@@ -1,0 +1,39 @@
+/* Exemplo de aplicação prática no seu código QSS */
+
+/* Azul - Fundo principal / cor principal */
+QMainWindow {
+    background-color: #13263C;
+}
+
+/* Azul escuro - Utilização para os popup’s */
+QDialog, QMessageBox {
+    background-color: #05192F;
+}
+
+/* Azul claro - Utilização de cor para os botões iniciais */
+QPushButton#btnInicial {
+    background-color: #056CE7;
+    color: #F0FDFF; /* Branco para os textos */
+}
+
+/* Vermelho - Utilização para os botões de saída */
+QPushButton#btnSaida {
+    background-color: #D62039;
+    color: #F0FDFF; /* Branco para os textos */
+}
+
+/* Azul mediano - Utilização para os botões de "Cancelar" */
+QPushButton#btnCancelar {
+    background-color: #334A68;
+    color: #F0FDFF; /* Branco para os textos */
+}
+
+/* Azul mais claro - Utilização para os textos menores */
+QLabel#lblMenor, QStatusBar {
+    color: #93B9D6;
+}
+
+/* Verde - Utilização de cor para ícones "Confirmado" */
+QLabel#lblIconeConfirmado {
+    color: #2FA94B;
+}
