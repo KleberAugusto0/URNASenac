@@ -1,0 +1,69 @@
+QDialog {
+    background-color: #13263C;
+    border: 2px solid #123559;
+    border-radius: 20px;
+}
+
+QLabel {
+    color: #F0FDFF;
+}
+
+#titulo_zerezima {
+    color: #F0FDFF;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+#subtitulo_zerezima {
+    color: #93B9D6;
+    font-size: 18px;
+}
+
+#caixa_informacoes {
+    background-color: #05192F;
+    border: 2px solid #123559;
+    border-radius: 15px;
+}
+
+#status_zerezima {
+    color: #2FA94B;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#texto_informacao {
+    color: #93B9D6;
+    font-size: 18px;
+}
+
+#btn_confirmar_zerezima {
+    background-color: #056CE7;
+    color: #F0FDFF;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#btn_confirmar_zerezima:hover {
+    background-color: #123559;
+}
+
+#btn_voltar_zerezima {
+    background-color: #334A68;
+    color: #F0FDFF;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+#btn_voltar_zerezima:hover {
+    background-color: #123559;
+}
+
+#btn_fechar_zerezima {
+    background-color: transparent;
+    color: #F0FDFF;
+    border: none;
+    font-size: 30px;
+}

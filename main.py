@@ -100,13 +100,19 @@ class MenuUrna(QWidget):
         titulo = QLabel("RELATÓRIO INICIAL")
         titulo.setObjectName("titulo_zerezima")
         titulo.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        layout_principal.addWidget(titulo)
+        
+        icone = QLabel()
+        icone.setObjectName("quadrado_icone")
+        caminho_imagem = os.path.dirname(os.path.abspath(__file__))
+        caminho_imagem = os.path.join(caminho_imagem,"imagens","voting-box.png")
+        icone.setPixmap
+        (QPixmap(caminho_imagem).scaled(150,150,Qt.AspectRatioMode.KeepAspectRatio))
 
         subtitulo = QLabel("ZERÉSIMA")
         subtitulo.setObjectName("subtitulo_zerezima")
         subtitulo.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
+        
+        layout_principal.addWidget(titulo)
         layout_principal.addWidget(subtitulo)
 
         caixa_informacoes = QWidget()
@@ -189,10 +195,7 @@ class MenuUrna(QWidget):
 
         tela_sair.setFixedSize(450, 280)
 
-        tela_sair.setWindowFlags(
-            Qt.WindowType.FramelessWindowHint |
-            Qt.WindowType.Dialog
-        )
+        tela_sair.setWindowFlags(Qt.WindowType.FramelessWindowHint|Qt.WindowType.Dialog)
 
         tela_alinhamento = QVBoxLayout(tela_sair)
         layout_botoes = QHBoxLayout()
@@ -201,52 +204,26 @@ class MenuUrna(QWidget):
         botao_fechar.setObjectName("btn_fechar_x")
         botao_fechar.clicked.connect(tela_sair.close)
 
-        tela_alinhamento.addWidget(
-            botao_fechar,
-            alignment=Qt.AlignmentFlag.AlignRight
-        )
+        tela_alinhamento.addWidget(botao_fechar,alignment=Qt.AlignmentFlag.AlignRight)
 
         icone = QLabel()
         icone.setObjectName("quadrado_icone")
 
-        caminho_imagem = os.path.dirname(
-            os.path.abspath(__file__)
-        )
+        caminho_imagem = os.path.dirname(os.path.abspath(__file__))
 
-        caminho_imagem = os.path.join(
-            caminho_imagem,
-            "imagem",
-            "imagem_sair.jpg"
-        )
+        caminho_imagem = os.path.join(caminho_imagem,"imagens","exit.png")
 
-        icone.setPixmap(
-            QPixmap(caminho_imagem).scaled(
-                150,
-                150,
-                Qt.AspectRatioMode.KeepAspectRatio
-            )
-        )
-
-        tela_alinhamento.addWidget(
-            icone,
-            alignment=Qt.AlignmentFlag.AlignCenter
-        )
-
+        icone.setPixmap(QPixmap(caminho_imagem).scaled(78,78,Qt.AspectRatioMode.KeepAspectRatio))
+        
+        tela_alinhamento.addWidget(icone,alignment=Qt.AlignmentFlag.AlignCenter)
         titulo = QLabel("Sair do sistema")
         titulo.setObjectName("titulo_popup")
-
+        
         subtitulo = QLabel("Tem certeza que deseja sair?")
         subtitulo.setObjectName("subtitulo_popup")
-
-        tela_alinhamento.addWidget(
-            titulo,
-            alignment=Qt.AlignmentFlag.AlignCenter
-        )
-
-        tela_alinhamento.addWidget(
-            subtitulo,
-            alignment=Qt.AlignmentFlag.AlignCenter
-        )
+        
+        tela_alinhamento.addWidget(titulo,alignment=Qt.AlignmentFlag.AlignCenter)
+        tela_alinhamento.addWidget(subtitulo,alignment=Qt.AlignmentFlag.AlignCenter)
 
         botao_cancelar = QPushButton("Cancelar")
         botao_cancelar.setObjectName("btn_cancelar_dialog")
@@ -260,7 +237,6 @@ class MenuUrna(QWidget):
         layout_botoes.addWidget(botao_confirmar)
 
         tela_alinhamento.addLayout(layout_botoes)
-
         caminho_estilo = os.path.join(
             os.path.dirname(__file__),
             "estilo",
