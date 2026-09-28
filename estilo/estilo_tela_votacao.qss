@@ -1,60 +1,76 @@
 QMainWindow, QWidget {
-    background-color: #13263C;
+    background-color: #03162B;
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+}
+
+QLabel#tituloVotar {
+    color: #F0FDFF;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+QLabel#subtituloVotar {
+    color: #93B9D6;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 QFrame#painelTeclado {
-    background-color: #05192F;
-    border: 1.5px solid #1d3b5e;
-    border-radius: 14px;
+    background-color: #091F37;
+    border: 1px solid #123559;
+    border-radius: 12px;
 }
 
 QLineEdit#visor {
-    background-color: transparent;
+    background-color: #05192F;
     color: #F0FDFF;
-    border: 1.5px solid #1a4373;
+    border: 1.5px solid #123559;
     border-radius: 8px;
+    font-family: 'Consolas', 'Courier New', monospace;
     font-size: 32px;
     font-weight: bold;
-    letter-spacing: 6px;
-    padding: 2px;
+    letter-spacing: 12px;
+    padding-left: 12px;
 }
 
 QLineEdit#visor[inativo="true"] {
-    color: #FFFFFF;
+    color: #93B9D6;
 }
 
 QPushButton.botaoNumerico {
-    background-color: #243851;
+    background-color: #213550;
     color: #F0FDFF;
-    border: none;
+    border: 1px solid #123559;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 600;
 }
 
 QPushButton.botaoNumerico:hover {
-    background-color: #2d4563;
+    background-color: #334A68;
+    border-color: #4B6685;
 }
 
 QPushButton.botaoNumerico:pressed {
-    background-color: #1b2a3d;
+    background-color: #05192F;
 }
 
 QPushButton#botaoLimpar {
-    background-color: #243851;
+    background-color: #334A68;
     color: #F0FDFF;
-    border: none;
+    border: 1px solid #123559;
     border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
 }
 
 QPushButton#botaoLimpar:hover {
-    background-color: #2d4563;
+    background-color: #4B6685;
 }
 
 QPushButton#botaoLimpar:pressed {
-    background-color: #1b2a3d;
+    background-color: #13263C;
 }
 
 QPushButton#botaoConfirmar {
@@ -63,13 +79,13 @@ QPushButton#botaoConfirmar {
     border: none;
     border-radius: 8px;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 QPushButton#botaoConfirmar:hover {
-    background-color: #1a7bf2;
+    background-color: #1A76FF;
 }
 
 QPushButton#botaoConfirmar:pressed {
-    background-color: #0452b3;
+    background-color: #0052CC;
 }
