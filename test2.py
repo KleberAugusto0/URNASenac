@@ -24,47 +24,36 @@ class MenuUrna(QWidget):
 
         self.verificacao_zerezima = False
 
-        layout.addStretch(1)
-
         txt_urna = QLabel("Urna Eletrônica")
-        layout.addWidget(txt_urna)
         txt_urna.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         btn_zerezima = QPushButton("Rélatorio inicial (Zerézima)")
-        layout.addWidget(
-            btn_zerezima,
-            alignment=Qt.AlignmentFlag.AlignCenter
-        )
         btn_zerezima.setFixedSize(250, 50)
 
         btn_votar = QPushButton("Votar")
-        layout.addWidget(
-            btn_votar,
-            alignment=Qt.AlignmentFlag.AlignCenter
-        )
         btn_votar.setFixedSize(250, 50)
-
+       
         btn_relatorio = QPushButton("Relatório Final")
-        layout.addWidget(
-            btn_relatorio,
-            alignment=Qt.AlignmentFlag.AlignCenter
-        )
         btn_relatorio.setFixedSize(250, 50)
-
+        
         btn_sair = QPushButton("Sair")
         btn_sair.setObjectName("btn_sair")
-        layout.addWidget(
-            btn_sair,
-            alignment=Qt.AlignmentFlag.AlignCenter
-        )
         btn_sair.setFixedSize(250, 50)
+        btn_sair.clicked.connect(self.sairDoSistema)
+
+        layout.addWidget(txt_urna)
+        layout.addWidget(btn_zerezima,alignment=Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(btn_votar,alignment=Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(btn_relatorio,alignment=Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(btn_sair,alignment=Qt.AlignmentFlag.AlignCenter)
+        layout.addStretch(1)
 
         btn_zerezima.clicked.connect(self.zerezima)
         btn_votar.clicked.connect(self.votar)
         btn_relatorio.clicked.connect(self.relatorio)
-        btn_sair.clicked.connect(self.sairDoSistema)
+        
 
-        layout.addStretch(1)
+        
 
     def zerezima(self):
         # Correção do escopo: Criado como filho de "self" para manter comportamento Modal flutuante
@@ -176,8 +165,7 @@ class MenuUrna(QWidget):
         icone.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         caminho_imagem = os.path.dirname(os.path.abspath(__file__))
-        # Correção da pasta de "imagem" para "imagens" caso mantenha o padrão
-        caminho_imagem = os.path.join(caminho_imagem, "imagens", "imagem_sair.jpg")
+        caminho_imagem = os.path.join(caminho_imagem, "imagens", "exit.png")
 
         if os.path.exists(caminho_imagem):
             icone.setPixmap(QPixmap(caminho_imagem).scaled(100, 100, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
