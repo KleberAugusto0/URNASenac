@@ -1,67 +1,86 @@
-import sys, os
-from PySide6.QtWidgets import QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame, QApplication
+import sys
+from pathlib import Path
+from PySide6.QtWidgets import (
+    QApplication, QDialog, QLabel, QPushButton, 
+    QVBoxLayout, QHBoxLayout, QFrame
+)
 from PySide6.QtCore import Qt
 
-
 class PopupAtencao(QDialog):
-    # CORREÇÃO 1: Alterado de _init_ para __init__
     def __init__(self, parent=None):
-        # CORREÇÃO 1: Alterado de _init_ para __init__
         super().__init__(parent)
-        self.setWindowFlags(Qt.FramelessWindowHint | Qt.Dialog)
-        self.setAttribute(Qt.WA_TranslucentBackground)
-        self.inicializar_tela()
-        self.carregar_estilo()
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Dialog)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.init_ui()
 
-    def inicializar_tela(self):
-        self.card_container = QFrame(self)
+    def init_ui(self):
+        layout_principal = QVBoxLayout(self)
+        layout_principal.setContentsMargins(10, 10, 10, 10)
+
+        self.card_container = QFrame()
         self.card_container.setObjectName("card_container")
-
+        
         layout_card = QVBoxLayout(self.card_container)
         layout_card.setContentsMargins(24, 20, 24, 20)
         layout_card.setSpacing(16)
 
         layout_cabecalho = QHBoxLayout()
-        layout_cabecalho.setAlignment(Qt.AlignCenter)
-        layout_cabecalho.setSpacing(8)
+        layout_cabecalho.setSpacing(12)
 
-        self.label_icone = QLabel("i")
-        self.label_icone.setObjectName("label_icone")
+        icon_info = QLabel("i")
+        icon_info.setObjectName("icon_info")
 
-        self.label_titulo = QLabel("Atenção")
-        self.label_titulo.setObjectName("label_titulo")
+        label_titulo = QLabel("Atenção")
+        label_titulo.setObjectName("label_titulo")
 
-        layout_cabecalho.addWidget(self.label_icone)
-        layout_cabecalho.addWidget(self.label_titulo)
+        layout_cabecalho.addWidget(icon_info)
+        layout_cabecalho.addWidget(label_titulo)
+        layout_cabecalho.addStretch()
 
-        self.label_mensagem = QLabel("Você precisa realizar a Zerésima\nantes de poder votar.")
-        self.label_mensagem.setObjectName("label_mensagem")
-        self.label_mensagem.setAlignment(Qt.AlignCenter)
+        label_mensagem = QLabel("Você precisa realizar a Zeressima\nantes de poder votar.")
+        label_mensagem.setObjectName("label_mensagem")
+        label_mensagem.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.botao_ok = QPushButton("Ok")
-        self.botao_ok.setObjectName("botao_ok")
-        self.botao_ok.setCursor(Qt.PointingHandCursor)
-        self.botao_ok.clicked.connect(self.accept)
+        botao_ok = QPushButton("OK")
+        botao_ok.setObjectName("botao_ok")
+        botao_ok.setCursor(Qt.CursorShape.PointingHandCursor)
+        botao_ok.clicked.connect(self.accept)
+
+        layout_botao = QHBoxLayout()
+        layout_botao.addStretch()
+        layout_botao.addWidget(botao_ok)
+        layout_botao.addStretch()
 
         layout_card.addLayout(layout_cabecalho)
-        layout_card.addWidget(self.label_mensagem)
-        layout_card.addWidget(self.botao_ok, alignment=Qt.AlignCenter)
+        layout_card.addWidget(label_mensagem)
+        layout_card.addSpacing(4)
+        layout_card.addLayout(layout_botao)
 
-        layout_raiz = QVBoxLayout(self)
-        layout_raiz.addWidget(self.card_container)
-        layout_raiz.setContentsMargins(0, 0, 0, 0)
+        layout_principal.addWidget(self.card_container)
+        self.setFixedSize(360, 200)
+
+        self.carregar_estilo()
 
     def carregar_estilo(self):
-       
-        diretorio_atual = os.path.dirname(os.path.abspath(__file__))
-        caminho_qss = os.path.join(diretorio_atual, "..", "estilo", "estilo_candidato.qss")
-        if os.path.exists(caminho_qss):
-            with open(caminho_qss, "r", encoding="utf-8") as arquivo_qss:
-                self.setStyleSheet(arquivo_qss.read())
+        base_dir = Path(__file__).resolve().parent
+        caminhos_possiveis = [
+            base_dir / "estilo.qss",
+            base_dir / "estilo" / "estilo.qss",
+            base_dir / "estilos" / "estilo.qss",
+            base_dir.parent / "estilo" / "estilo.qss",
+            base_dir.parent / "estilo.qss"
+        ]
+        
+        qss_encontrado = None
+        for caminho in caminhos_possiveis:
+            if caminho.exists():
+                qss_encontrado = caminho
+                break
 
+        if qss_encontrado:
+            self.setStyleSheet(qss_encontrado.read_text(encoding="utf-8"))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    janela = PopupAtencao()
-    janela.show()
-    sys.exit(app.exec())
+    popup = PopupAtencao()
+    popup.exec()
