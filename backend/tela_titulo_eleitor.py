@@ -2,7 +2,6 @@ from PySide6.QtWidgets import QWidget,QVBoxLayout, QLabel, QPushButton,QHBoxLayo
 from PySide6.QtGui import QPixmap,Qt
 from pathlib import Path
 import sys,os
-
 BASE_DIR = Path(__file__).resolve().parent
 caminho_icone = BASE_DIR.parent / "imagens"/ "voting-box.png"
 caminho_arquivo_qss = BASE_DIR.parent / "estilo" / "estilo_tela_titulo.qss"
@@ -12,6 +11,9 @@ class TelaTituloEleitor(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Título de Eleitor")
+        with open("estilo/estilo_tela_titulo.qss", "r", encoding="utf-8") as arquivo:
+                self.setStyleSheet(arquivo.read())
+        
         
 
         layout = QVBoxLayout()
@@ -72,13 +74,3 @@ class TelaTituloEleitor(QWidget):
         layout.addLayout(layout_botoes)
 
         layout.addStretch(1)
-        
-
-if __name__ == "__main__":
-    
-    app = QApplication(sys.argv)
-    com_estilo = caminho_arquivo_qss.read_text(encoding="utf-8")
-    app.setStyleSheet(com_estilo)
-    window = TelaTituloEleitor()
-    window.show()
-    sys.exit(app.exec())
