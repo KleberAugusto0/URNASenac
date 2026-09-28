@@ -96,7 +96,7 @@ class TelaConfirmacaoVoto(QDialog):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    with open("style.qss", encoding="utf-8") as arquivo:
+    with open("estilo/estilo_pop_up_voto_nulo.qss", encoding="utf-8") as arquivo:
         app.setStyleSheet(arquivo.read())
 
     tela_confirmacao = TelaConfirmacaoVoto()
