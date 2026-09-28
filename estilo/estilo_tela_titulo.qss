@@ -14,7 +14,8 @@ QLabel#layout{
 }
 QLabel#titulo{
     font-size: 15px;
-    font-weight: bold
+    font-weight: bold;
+    color: #F0FDFF;
 }
 
 QPushButton#btn_confirmar{
@@ -22,6 +23,15 @@ QPushButton#btn_confirmar{
 }
 QPushButton#btn_cancelar{
     background-color: #334A68
+}
+
+QLabel{
+    color: #F0FDFF;
+}
+
+
+QLineEdit{
+    color: #F0FDFF;
 }
 
 

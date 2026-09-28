@@ -22,7 +22,8 @@ class TelaTituloEleitor(QWidget):
         icone_votar.setScaledContents(True)
         icone = QPixmap(caminho_icone)
         icone_votar.setPixmap(icone)
-
+    
+        
         layout_label = QVBoxLayout()
         txt_votar = QLabel("VOTAR")
         txt_votar.setObjectName("titulo")
