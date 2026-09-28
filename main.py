@@ -1,6 +1,8 @@
 from PySide6.QtWidgets import QLabel, QVBoxLayout,QPushButton,QWidget,QApplication,QFrame
 from PySide6.QtCore import Qt
 import sys,os
+from pathlib import Path
+
 
 class MenuUrna(QWidget):
     def __init__(self):
@@ -58,6 +60,9 @@ class MenuUrna(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    with open("estilo/estilo.qss", "r", encoding="utf-8") as arquivo:
+        app.setStylesheet(arquivo.read())
     janela = MenuUrna()
     janela.show()
     sys.exit(app.exec())
+
