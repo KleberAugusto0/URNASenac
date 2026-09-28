@@ -43,7 +43,7 @@ class TelaConfirmacaoVoto(QDialog):
         self.lbl_icone.setObjectName("lbl_icone")
         self.lbl_icone.setAlignment(Qt.AlignCenter)
 
-        pixmap_icone = QPixmap("imagens/icone_alerta.png")
+        pixmap_icone = QPixmap("imagens/") #Parametro que recebe a foto do candidato
         self.lbl_icone.setPixmap(
             pixmap_icone.scaled(64, 64, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         )
