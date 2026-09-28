@@ -1,11 +1,13 @@
-import sys
-from PySide6.QtWidgets import QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame
+import sys, os
+from PySide6.QtWidgets import QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame, QApplication
 from PySide6.QtCore import Qt
 
 
 class PopupAtencao(QDialog):
-    def _init_(self, parent=None):
-        super()._init_(parent)
+    # CORREÇÃO 1: Alterado de _init_ para __init__
+    def __init__(self, parent=None):
+        # CORREÇÃO 1: Alterado de _init_ para __init__
+        super().__init__(parent)
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.Dialog)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.inicializar_tela()
@@ -50,8 +52,16 @@ class PopupAtencao(QDialog):
         layout_raiz.setContentsMargins(0, 0, 0, 0)
 
     def carregar_estilo(self):
-        diretorio_atual = os.path.dirname(os.path.abspath(_file_))
-        caminho_qss = os.path.join(diretorio_atual, "..", "Estilos", "popup_atencao.qss")
+       
+        diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+        caminho_qss = os.path.join(diretorio_atual, "..", "estilo", "estilo_candidato.qss")
         if os.path.exists(caminho_qss):
             with open(caminho_qss, "r", encoding="utf-8") as arquivo_qss:
                 self.setStyleSheet(arquivo_qss.read())
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    janela = PopupAtencao()
+    janela.show()
+    sys.exit(app.exec())
