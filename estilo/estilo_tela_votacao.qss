@@ -1,0 +1,75 @@
+QMainWindow, QWidget {
+    background-color: #13263C;
+}
+
+QFrame#painelTeclado {
+    background-color: #05192F;
+    border: 1.5px solid #1d3b5e;
+    border-radius: 14px;
+}
+
+QLineEdit#visor {
+    background-color: transparent;
+    color: #F0FDFF;
+    border: 1.5px solid #1a4373;
+    border-radius: 8px;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 6px;
+    padding: 2px;
+}
+
+QLineEdit#visor[inativo="true"] {
+    color: #FFFFFF;
+}
+
+QPushButton.botaoNumerico {
+    background-color: #243851;
+    color: #F0FDFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+QPushButton.botaoNumerico:hover {
+    background-color: #2d4563;
+}
+
+QPushButton.botaoNumerico:pressed {
+    background-color: #1b2a3d;
+}
+
+QPushButton#botaoLimpar {
+    background-color: #243851;
+    color: #F0FDFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+QPushButton#botaoLimpar:hover {
+    background-color: #2d4563;
+}
+
+QPushButton#botaoLimpar:pressed {
+    background-color: #1b2a3d;
+}
+
+QPushButton#botaoConfirmar {
+    background-color: #056CE7;
+    color: #F0FDFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton#botaoConfirmar:hover {
+    background-color: #1a7bf2;
+}
+
+QPushButton#botaoConfirmar:pressed {
+    background-color: #0452b3;
+}
