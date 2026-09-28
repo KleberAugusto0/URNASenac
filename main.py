@@ -1,14 +1,6 @@
-from PySide6.QtWidgets import (
-    QLabel,
-    QVBoxLayout,
-    QPushButton,
-    QWidget,
-    QApplication
-)
+from PySide6.QtWidgets import QLabel, QVBoxLayout,QPushButton,QWidget,QApplication,QFrame
 from PySide6.QtCore import Qt
-import sys
-import os
-
+import sys,os
 
 class MenuUrna(QWidget):
     def __init__(self):
@@ -22,7 +14,7 @@ class MenuUrna(QWidget):
 
         layout.addStretch(1)
         txt_urna = QLabel("Urna Eletrónica")
-        layout.addWidget(txt_urna) 
+        layout.addWidget(txt_urna)
         txt_urna.setAlignment(Qt.AlignmentFlag.AlignCenter) 
 
         btn_zerezima = QPushButton("Rélatorio inicial (Zerézima)")
@@ -60,9 +52,9 @@ class MenuUrna(QWidget):
                 pass#Fazer popup para fazer a zerezima primeiro
 
 
-    def relatorio():
-        
-        pass
+        def relatorio():
+            pass
+
 
 
 if __name__ == "__main__":
