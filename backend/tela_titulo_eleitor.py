@@ -58,11 +58,13 @@ class TelaTituloEleitor(QWidget):
         layout_botoes = QHBoxLayout()
         bnt_cancelar = QPushButton("CANCELAR")
         bnt_cancelar.setObjectName("btn_cancelar")
+        bnt_cancelar.setFixedSize(90,40)
 
         bnt_confirmar = QPushButton("CONFIRMAR")
         bnt_confirmar.setObjectName("btn_confirmar")
+        bnt_confirmar.setFixedSize(90,40)
 
-        layout_botoes.addStretch(1)
+        
         layout_botoes.addWidget(bnt_cancelar)
 
         layout_botoes.addWidget(bnt_confirmar)
