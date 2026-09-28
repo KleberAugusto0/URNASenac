@@ -1,13 +1,13 @@
-QDialog#tela_voto_nulo {
+QDialog#tela_confirmar_candidato {
     background-color: #12203A;
 }
 
-QFrame#card_voto_nulo {
+QFrame#card_confirmar_candidato {
     background-color: #0B1A2E;
     border: 1px solid #1F5F99;
     border-radius: 12px;
 }
-QFrame#card_voto_nulo {
+QFrame#card_confirmar_candidato {
     background-color: #0B1A2E;
     border: 1px solid #1F5F99;
     border-radius: 12px;
