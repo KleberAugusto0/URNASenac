@@ -28,6 +28,7 @@ class TelaTituloEleitor(QWidget):
         txt_votar = QLabel("VOTAR")
         txt_votar.setObjectName("titulo")
         txt_titulo = QLabel("Informe seu Titulo")
+        txt_titulo.setObjectName("txt_subtitulo")
         layout_label.addWidget(txt_votar)
         layout_label.addWidget(txt_titulo)
 

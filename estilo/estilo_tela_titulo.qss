@@ -5,7 +5,7 @@ QWidget{
 
 QFrame#background-inp{
     background-color: #13263C;
-    border: 2px solid #056CE7;
+    border: 2px solid #123559;
 
 }
 QLabel#layout{
@@ -19,19 +19,27 @@ QLabel#titulo{
 }
 
 QPushButton#btn_confirmar{
-    background-color: #056CE7
+    background-color: #056CE7;
+    color: #F0FDFF;
 }
 QPushButton#btn_cancelar{
-    background-color: #334A68
+    background-color: #334A68;
+    color: #F0FDFF;
 }
 
 QLabel{
     color: #F0FDFF;
 }
 
+QLabel#txt_subtitulo{
+    color:#86A9D2;
+}
 
 QLineEdit{
     color: #F0FDFF;
+    background-color: #13263C;
+    border: 2px solid #4B6685;
+    
 }
 
 
