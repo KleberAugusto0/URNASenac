@@ -1,0 +1,37 @@
+
+QMainWindow {
+    background-color: #13263C;
+}
+
+
+QDialog, QMessageBox {
+    background-color: #05192F;
+}
+
+
+QPushButton#btnInicial {
+    background-color: #056CE7;
+    color: #F0FDFF; 
+}
+
+
+QPushButton#btnSaida {
+    background-color: #D62039;
+    color: #F0FDFF; 
+}
+
+
+QPushButton#btnCancelar {
+    background-color: #334A68;
+    color: #F0FDFF; 
+}
+
+
+QLabel#lblMenor, QStatusBar {
+    color: #93B9D6;
+}
+
+
+QLabel#lblIconeConfirmado {
+    color: #2FA94B;
+}
