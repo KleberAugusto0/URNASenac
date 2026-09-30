@@ -1,8 +1,8 @@
 import sys
 from pathlib import Path
 
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QFont, QPixmap
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import (
     QApplication,
     QFrame,
@@ -16,17 +16,18 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from tela_confirmacao_voto import TelaConfirmacaoVoto
-from candidatos import candidatos_cadastrados
+BASE_DIR = Path(__file__).resolve().parent
 
 
 class TelaDeVotacao(QMainWindow):
 
+    voto_confirmado = Signal(str)
     VALOR_PADRAO = "00000"
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.setWindowTitle("Tela de Votação")
+        self.setObjectName("tela_votacao")
         self.setFixedSize(380, 470)
 
         janela_central = QWidget()
@@ -35,6 +36,7 @@ class TelaDeVotacao(QMainWindow):
         layout_principal.setContentsMargins(20, 20, 20, 20)
         layout_principal.setSpacing(16)
 
+        # --- CABEÇALHO ---
         layout_cabecalho = QHBoxLayout()
         layout_cabecalho.setContentsMargins(4, 0, 0, 0)
         layout_cabecalho.setSpacing(14)
@@ -42,12 +44,9 @@ class TelaDeVotacao(QMainWindow):
         self.label_icone = QLabel()
         self.label_icone.setObjectName("iconeVotacao")
         self.label_icone.setAlignment(Qt.AlignmentFlag.AlignVCenter)
-        
-        caminho_icone = Path(__file__).resolve().parent.parent / "imagens" / "voting-box.png"
-        if not caminho_icone.exists():
-            caminho_icone = Path(__file__).resolve().parent / "voting-box.png"
 
-        if caminho_icone.exists():
+        caminho_icone = self._resolver_caminho(["imagens", "Imagens"], "voting-box.png")
+        if caminho_icone and caminho_icone.exists():
             pixmap = QPixmap(str(caminho_icone)).scaled(
                 44, 44, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation
             )
@@ -72,6 +71,7 @@ class TelaDeVotacao(QMainWindow):
         layout_cabecalho.addStretch()
 
         layout_principal.addLayout(layout_cabecalho)
+
 
         painel_teclado = QFrame()
         painel_teclado.setObjectName("painelTeclado")
@@ -108,26 +108,30 @@ class TelaDeVotacao(QMainWindow):
             botao = QPushButton(texto)
             botao.setProperty("class", "botaoNumerico")
             botao.setFixedHeight(50)
+            botao.setCursor(Qt.CursorShape.PointingHandCursor)
             botao.clicked.connect(lambda _, t=texto: self.adicionar_digito(t))
             layout_grade.addWidget(botao, linha, coluna)
 
-        botao_limpar = QPushButton("Limpar")
-        botao_limpar.setObjectName("botaoLimpar")
-        botao_limpar.setFixedHeight(50)
-        botao_limpar.clicked.connect(self.limpar_visor)
-        layout_grade.addWidget(botao_limpar, 3, 0)
+        self.botao_limpar = QPushButton("Limpar")
+        self.botao_limpar.setObjectName("botaoLimpar")
+        self.botao_limpar.setFixedHeight(50)
+        self.botao_limpar.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.botao_limpar.clicked.connect(self.limpar_visor)
+        layout_grade.addWidget(self.botao_limpar, 3, 0)
 
         botao_zero = QPushButton("0")
         botao_zero.setProperty("class", "botaoNumerico")
         botao_zero.setFixedHeight(50)
+        botao_zero.setCursor(Qt.CursorShape.PointingHandCursor)
         botao_zero.clicked.connect(lambda: self.adicionar_digito("0"))
         layout_grade.addWidget(botao_zero, 3, 1)
 
-        botao_confirmar = QPushButton("Confirmar")
-        botao_confirmar.setObjectName("botaoConfirmar")
-        botao_confirmar.setFixedHeight(50)
-        botao_confirmar.clicked.connect(lambda:self.autenticador())
-        layout_grade.addWidget(botao_confirmar, 3, 2)
+        self.botao_confirmar = QPushButton("Confirmar")
+        self.botao_confirmar.setObjectName("botaoConfirmar")
+        self.botao_confirmar.setFixedHeight(50)
+        self.botao_confirmar.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.botao_confirmar.clicked.connect(self.confirmar_voto)
+        layout_grade.addWidget(self.botao_confirmar, 3, 2)
 
         layout_painel.addLayout(layout_grade)
         layout_principal.addWidget(painel_teclado)
@@ -135,15 +139,28 @@ class TelaDeVotacao(QMainWindow):
         self.carregar_estilo()
         self.atualizar_visor()
 
-    def carregar_estilo(self) -> None:
-        caminho_estilo = Path(__file__).resolve().parent.parent / "estilo" / "estilo_tela_votacao.qss"
+    def _resolver_caminho(self, pastas: list, nome_arquivo: str) -> Path | None:
+        for pasta in pastas:
+            caminho = BASE_DIR.parent / pasta / nome_arquivo
+            if caminho.exists():
+                return caminho
+            caminho_local = BASE_DIR / pasta / nome_arquivo
+            if caminho_local.exists():
+                return caminho_local
+        caminho_direto = BASE_DIR / nome_arquivo
+        return caminho_direto if caminho_direto.exists() else None
 
-        if caminho_estilo.exists():
-            with open(caminho_estilo, "r", encoding="utf-8") as arquivo:
-                self.setStyleSheet(arquivo.read())
+    def carregar_estilo(self) -> None:
+        caminho_estilo = self._resolver_caminho(["estilo", "Estilos"], "estilo_tela_votacao.qss")
+
+        if caminho_estilo and caminho_estilo.exists():
+            try:
+                with open(caminho_estilo, "r", encoding="utf-8") as arquivo:
+                    self.setStyleSheet(arquivo.read())
+            except Exception as e:
+                print(f"Erro ao ler o arquivo QSS: {e}")
         else:
-            print(f"Aviso: Arquivo de estilo não encontrado em {caminho_estilo}")
-        
+            print("Aviso: Arquivo de estilo 'estilo_tela_votacao.qss' não foi encontrado.")
 
     def adicionar_digito(self, digito: str) -> None:
         if len(self.digitos_digitados) < 5:
@@ -161,23 +178,14 @@ class TelaDeVotacao(QMainWindow):
         else:
             self.visor.setText(self.digitos_digitados)
             self.visor.setProperty("inativo", "false")
+
         self.visor.style().unpolish(self.visor)
         self.visor.style().polish(self.visor)
 
-    def autenticador(self):
-        for candidado in candidatos_cadastrados:
-            if candidado.numero == str(self.visor.text()):
-                self.voto_confirmado()
-            else:
-                pass
-
-    def voto_confirmado(self):
-        TelaConfirmacaoVoto().exec()
-         
-
-    def voto_nulo(self):
-        pass
-
+    def confirmar_voto(self) -> None:
+        voto = self.digitos_digitados if self.digitos_digitados else self.VALOR_PADRAO
+        print(f"Voto confirmado: {voto}")
+        self.voto_confirmado.emit(voto)
 
 
 if __name__ == "__main__":
