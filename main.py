@@ -20,7 +20,7 @@ import os
 class MenuUrna(QWidget):
     def __init__(self):
         super().__init__()
-
+        self.setFixedSize(380,470)
         self.setWindowTitle("Menu")
 
         layout = QVBoxLayout()
@@ -33,29 +33,52 @@ class MenuUrna(QWidget):
         
         layout.addStretch(1)
 
+        layout_horizotal = QHBoxLayout()
+
+        icone_urna = QLabel()
+        img_icone_urna = QPixmap( os.path.join(os.path.dirname(__file__), "imagens", "voting-box.png"))
+        icone_urna.setPixmap(img_icone_urna)
+        icone_urna.setScaledContents(True)
+        icone_urna.setFixedSize(80,80)
+        
+
         txt_urna = QLabel("Urna Eletrônica")
-        layout.addWidget(txt_urna)
+        layout_horizotal.addWidget(icone_urna)
+        layout_horizotal.addWidget(txt_urna)
+        layout.addLayout(layout_horizotal)
         txt_urna.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        btn_zerezima = QPushButton("Rélatorio inicial (Zerézima)")
+        btn_zerezima = QPushButton("Relatório inicial (Zerézima)")
         layout.addWidget(btn_zerezima, alignment=Qt.AlignmentFlag.AlignCenter)
         btn_zerezima.setFixedSize(250, 50)
+        icone_zerezima = QIcon( os.path.join(os.path.dirname(__file__), "imagens", "icone_documento.png"))
+        btn_zerezima.setIcon(icone_zerezima)
+        btn_zerezima.setIconSize(QSize(24,24))
 
         btn_votar = QPushButton("Votar")
         btn_votar.clicked.connect(lambda:votar())
         btn_votar.setCursor(Qt.CursorShape.PointingHandCursor)
         layout.addWidget(btn_votar,alignment=Qt.AlignmentFlag.AlignCenter)
         btn_votar.setFixedSize(250,50)
+        icone_votar = QIcon( os.path.join(os.path.dirname(__file__), "imagens", "voting-box.png"))
+        btn_votar.setIcon(icone_votar)
+        btn_votar.setIconSize(QSize(24,24))
     
 
         btn_relatorio = QPushButton("Relatório Final")
         layout.addWidget(btn_relatorio, alignment=Qt.AlignmentFlag.AlignCenter)
         btn_relatorio.setFixedSize(250, 50)
+        icone_reltorio = QIcon( os.path.join(os.path.dirname(__file__), "imagens", "icone_grafico.png"))
+        btn_relatorio.setIcon(icone_reltorio)
+        btn_relatorio.setIconSize(QSize(24,24))
 
         btn_sair = QPushButton("Sair")
         btn_sair.setObjectName("btn_sair")
         layout.addWidget(btn_sair, alignment=Qt.AlignmentFlag.AlignCenter)
         btn_sair.setFixedSize(250, 50)
+        icone_sair = QIcon( os.path.join(os.path.dirname(__file__), "imagens", "exit.png"))
+        btn_sair.setIcon(icone_sair)
+        btn_sair.setIconSize(QSize(24,24))
 
         btn_zerezima.clicked.connect(self.zerezima)
         btn_votar.clicked.connect(self.votar)

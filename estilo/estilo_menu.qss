@@ -9,6 +9,9 @@ QLabel {
 QPushButton {
     background-color: #056CE7;
     color: #F0FDFF;
+    text-align: center;
+    padding-left: 0px;
+
 }
 
 QPushButton#btn_sair {
