@@ -1,0 +1,38 @@
+QDialog#tela_aviso {
+    background-color: #12203A;
+}
+
+QFrame#card_aviso {
+    background-color: #0B1A2E;
+    border: 1px solid #1F5F99;
+    border-radius: 12px;
+}
+
+QLabel#label_icone_aviso {
+    background: transparent;
+}
+
+QLabel#label_titulo_aviso {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+    background: transparent;
+}
+
+QLabel#label_mensagem_aviso {
+    color: #E6EDF5;
+    font-size: 13px;
+    background: transparent;
+}
+
+QPushButton#botao_ok_aviso {
+    background-color: #1877F2;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+}
+QPushButton#botao_ok_aviso:hover   { background-color: #2E88FF; }
+QPushButton#botao_ok_aviso:pressed { background-color: #1266D6; }
+
