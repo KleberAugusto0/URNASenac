@@ -1,4 +1,5 @@
-from PySide6.QtWidgets import QLabel, QVBoxLayout,QPushButton,QWidget,QApplication,QFrame
+import sys
+from PySide6.QtWidgets import QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame
 from PySide6.QtCore import Qt
 import sys,os
 from pathlib import Path
@@ -42,12 +43,17 @@ class MenuUrna(QWidget):
 
         tela_eleitor = TelaTituloEleitor()
 
+    def inicializar_tela(self):
+        self.card_container = QFrame(self)
+        self.card_container.setObjectName("card_container")
 
-        def zerezima():
-            verificacao_zerezima = True
-            #fazer logicoa pra chamar a tela
-            pass
+        layout_card = QVBoxLayout(self.card_container)
+        layout_card.setContentsMargins(24, 20, 24, 20)
+        layout_card.setSpacing(16)
 
+        layout_cabecalho = QHBoxLayout()
+        layout_cabecalho.setAlignment(Qt.AlignCenter)
+        layout_cabecalho.setSpacing(8)
 
         def votar():
             if verificacao_zerezima == True:
@@ -58,11 +64,20 @@ class MenuUrna(QWidget):
             elif verificacao_zerezima == False:
                 pass#Fazer popup para fazer a zerezima primeiro
 
+        self.label_titulo = QLabel("Atenção")
+        self.label_titulo.setObjectName("label_titulo")
 
-        def relatorio():
-            pass
+        layout_cabecalho.addWidget(self.label_icone)
+        layout_cabecalho.addWidget(self.label_titulo)
 
+        self.label_mensagem = QLabel("Você precisa realizar a Zerésima\nantes de poder votar.")
+        self.label_mensagem.setObjectName("label_mensagem")
+        self.label_mensagem.setAlignment(Qt.AlignCenter)
 
+        self.botao_ok = QPushButton("Ok")
+        self.botao_ok.setObjectName("botao_ok")
+        self.botao_ok.setCursor(Qt.PointingHandCursor)
+        self.botao_ok.clicked.connect(self.accept)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
