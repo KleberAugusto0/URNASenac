@@ -47,6 +47,7 @@ class TelaConfirmacaoVoto(QDialog):
         self.lbl_icone.setPixmap(
             pixmap_icone.scaled(64, 64, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         )
+
         
         layout_card.addWidget(self.lbl_icone, alignment=Qt.AlignHCenter)
         layout_card.addSpacing(13)
