@@ -78,7 +78,7 @@ class TelaZerezima(QDialog):
 
         layout_titulos = QVBoxLayout()
         layout_titulos.setSpacing(6)
-        layout_titulos.addWidget(self._label("ZERÉSIMA", "titulo_zerezima"))
+        layout_titulos.addWidget(self._label("ZERÉSIMA", "titulo_zeresima"))
         layout_titulos.addWidget(self._label("Relatório Inicial", "subtitulo_zerezima"))
         layout_topo_painel.addLayout(layout_titulos)
 
