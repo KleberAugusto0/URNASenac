@@ -1,15 +1,47 @@
 import sys
 from PySide6.QtWidgets import QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame
 from PySide6.QtCore import Qt
+import sys,os
+from pathlib import Path
+from backend.tela_titulo_eleitor import TelaTituloEleitor
 
 
-class PopupAtencao(QDialog):
-    def _init_(self, parent=None):
-        super()._init_(parent)
-        self.setWindowFlags(Qt.FramelessWindowHint | Qt.Dialog)
-        self.setAttribute(Qt.WA_TranslucentBackground)
-        self.inicializar_tela()
-        self.carregar_estilo()
+class MenuUrna(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Menu")
+        layout = QVBoxLayout()
+        self.setLayout(layout)
+        
+
+        verificacao_zerezima = True
+
+        layout.addStretch(1)
+        txt_urna = QLabel("Urna Eletrónica")
+        layout.addWidget(txt_urna)
+        txt_urna.setAlignment(Qt.AlignmentFlag.AlignCenter) 
+
+        btn_zerezima = QPushButton("Rélatorio inicial (Zerézima)")
+        layout.addWidget(btn_zerezima,alignment=Qt.AlignmentFlag.AlignCenter)
+        btn_zerezima.setFixedSize(250,50)
+
+        btn_votar = QPushButton("Votar")
+        btn_votar.clicked.connect(lambda:votar())
+        layout.addWidget(btn_votar,alignment=Qt.AlignmentFlag.AlignCenter)
+        btn_votar.setFixedSize(250,50)
+    
+
+        btn_relatorio = QPushButton("Relatório Final")
+        layout.addWidget(btn_relatorio,alignment=Qt.AlignmentFlag.AlignCenter)
+        btn_relatorio.setFixedSize(250,50)
+
+        btn_sair = QPushButton("Sair")
+        layout.addWidget(btn_sair,alignment=Qt.AlignmentFlag.AlignCenter)
+        btn_sair.setFixedSize(250,50) 
+        layout.addStretch(1)
+
+
+        tela_eleitor = TelaTituloEleitor()
 
     def inicializar_tela(self):
         self.card_container = QFrame(self)
@@ -23,8 +55,14 @@ class PopupAtencao(QDialog):
         layout_cabecalho.setAlignment(Qt.AlignCenter)
         layout_cabecalho.setSpacing(8)
 
-        self.label_icone = QLabel("i")
-        self.label_icone.setObjectName("label_icone")
+        def votar():
+            if verificacao_zerezima == True:
+                self.close()
+                tela_eleitor.show()
+                
+                
+            elif verificacao_zerezima == False:
+                pass#Fazer popup para fazer a zerezima primeiro
 
         self.label_titulo = QLabel("Atenção")
         self.label_titulo.setObjectName("label_titulo")
@@ -41,17 +79,11 @@ class PopupAtencao(QDialog):
         self.botao_ok.setCursor(Qt.PointingHandCursor)
         self.botao_ok.clicked.connect(self.accept)
 
-        layout_card.addLayout(layout_cabecalho)
-        layout_card.addWidget(self.label_mensagem)
-        layout_card.addWidget(self.botao_ok, alignment=Qt.AlignCenter)
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    with open("estilo/estilo.qss", "r", encoding="utf-8") as arquivo:
+        app.setStyleSheet(arquivo.read())
+    janela = MenuUrna()
+    janela.show()
+    sys.exit(app.exec())
 
-        layout_raiz = QVBoxLayout(self)
-        layout_raiz.addWidget(self.card_container)
-        layout_raiz.setContentsMargins(0, 0, 0, 0)
-
-    def carregar_estilo(self):
-        diretorio_atual = os.path.dirname(os.path.abspath(_file_))
-        caminho_qss = os.path.join(diretorio_atual, "..", "Estilos", "popup_atencao.qss")
-        if os.path.exists(caminho_qss):
-            with open(caminho_qss, "r", encoding="utf-8") as arquivo_qss:
-                self.setStyleSheet(arquivo_qss.read())

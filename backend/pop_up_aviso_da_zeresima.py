@@ -27,8 +27,10 @@ class PopupAtencao(QDialog):
         layout_cabecalho = QHBoxLayout()
         layout_cabecalho.setSpacing(12)
 
+        # 1. Ícone com texto e alinhamento centralizado explícito
         icon_info = QLabel("i")
         icon_info.setObjectName("icon_info")
+        icon_info.setAlignment(Qt.AlignmentFlag.AlignCenter) # <--- Garante a centralização do "i"
 
         label_titulo = QLabel("Atenção")
         label_titulo.setObjectName("label_titulo")
@@ -64,11 +66,12 @@ class PopupAtencao(QDialog):
     def carregar_estilo(self):
         base_dir = Path(__file__).resolve().parent
         caminhos_possiveis = [
-            base_dir / "estilo.qss",
-            base_dir / "estilo" / "estilo.qss",
-            base_dir / "estilos" / "estilo.qss",
-            base_dir.parent / "estilo" / "estilo.qss",
-            base_dir.parent / "estilo.qss"
+            base_dir / "estilo_pop_up_aviso_da_zeresima.qss",
+            base_dir / "estilo" / "estilo_pop_up_aviso_da_zeresima.qss",
+            base_dir / "estilos" / "estilo_pop_up_aviso_da_zeresima.qss",
+            base_dir.parent / "estilo" / "estilo_pop_up_aviso_da_zeresima.qss",
+            base_dir.parent / "estilos" / "estilo_pop_up_aviso_da_zeresima.qss",
+            base_dir.parent / "estilo_pop_up_aviso_da_zeresima.qss"
         ]
         
         qss_encontrado = None
@@ -79,6 +82,8 @@ class PopupAtencao(QDialog):
 
         if qss_encontrado:
             self.setStyleSheet(qss_encontrado.read_text(encoding="utf-8"))
+        else:
+            print(f"[Aviso] O arquivo .qss não foi localizado a partir de: {base_dir}")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
