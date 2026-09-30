@@ -1,69 +1,89 @@
 QDialog {
-    background-color: #13263C;
-    border: 2px solid #123559;
-    border-radius: 20px;
+    background-color: #061122;
 }
 
-QLabel {
-    color: #F0FDFF;
+QWidget#painel_central {
+    background-color: #061122;
 }
 
-#titulo_zerezima {
-    color: #F0FDFF;
-    font-size: 32px;
+QLabel#quadrado_icone {
+    background-color: transparent;
+}
+
+QLabel#titulo_zerezima {
+    color: white;
+    font-size: 40px;
     font-weight: bold;
+    background-color: transparent;
 }
 
-#subtitulo_zerezima {
-    color: #93B9D6;
-    font-size: 18px;
+QLabel#subtitulo_zerezima {
+    color: #8fa0b5;
+    font-size: 24px;
+    background-color: transparent;
 }
 
-#caixa_informacoes {
-    background-color: #05192F;
-    border: 2px solid #123559;
-    border-radius: 15px;
+QLabel#data_zerezima {
+    color: #8fa0b5;
+    font-size: 24px;
+    background-color: transparent;
 }
 
-#status_zerezima {
-    color: #2FA94B;
+QWidget#caixa_informacoes {
+    background-color: transparent;
+    border: 1px solid #122c54;
+    border-radius: 8px;
+}
+
+QLabel#titulo_secao {
+    color: #0066ff;
+    font-size: 28px;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+QLabel#texto_informacao {
+    color: white;
+    font-size: 24px;
+    background-color: transparent;
+}
+
+QLabel#situacao_votou {
+    color: #ff5c5c;
     font-size: 22px;
     font-weight: bold;
-}
-
-#texto_informacao {
-    color: #93B9D6;
-    font-size: 18px;
-}
-
-#btn_confirmar_zerezima {
-    background-color: #056CE7;
-    color: #F0FDFF;
-    border: none;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-#btn_confirmar_zerezima:hover {
-    background-color: #123559;
-}
-
-#btn_voltar_zerezima {
-    background-color: #334A68;
-    color: #F0FDFF;
-    border: none;
-    border-radius: 12px;
-    font-size: 18px;
-}
-
-#btn_voltar_zerezima:hover {
-    background-color: #123559;
-}
-
-#btn_fechar_zerezima {
     background-color: transparent;
-    color: #F0FDFF;
+}
+
+QLabel#situacao_nao_votou {
+    color: #4cd964;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+QScrollArea#area_scroll {
+    background-color: transparent;
     border: none;
-    font-size: 30px;
+}
+
+QWidget#conteudo_scroll {
+    background-color: transparent;
+}
+
+QPushButton#btn_voltar_zerezima {
+    background-color: #0066ff;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+}
+
+QPushButton#btn_voltar_zerezima:hover {
+    background-color: #0052cc;
+}
+
+QPushButton#btn_voltar_zerezima:pressed {
+    background-color: #0047b3;
 }
