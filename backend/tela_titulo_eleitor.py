@@ -131,3 +131,4 @@ if __name__ == "__main__":
   janela.resize(400, 300)
   janela.show()
   sys.exit(app.exec())
+  layout.addStretch(1)

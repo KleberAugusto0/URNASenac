@@ -90,5 +90,7 @@ if __name__ == "__main__":
     except FileNotFoundError:
         pass
 
+    with open("estilo/estilo_confirmacao_voto.qss", encoding="utf-8") as arquivo:
+        app.setStyleSheet(arquivo.read())
     tela_confirmacao = TelaConfirmacaoVoto()
     tela_confirmacao.exec()
