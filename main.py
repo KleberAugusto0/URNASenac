@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-from PySide6.QtWidgets import QLabel, QVBoxLayout,QPushButton,QWidget,QApplication,QFrame,QWidget
-=======
 from PySide6.QtWidgets import (
     QLabel,
     QVBoxLayout,
@@ -12,9 +9,9 @@ from PySide6.QtWidgets import (
     QScrollArea,
     QFrame,
 )
->>>>>>> c82fa7215c035683238faa030bdb310432ea9c92
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QPixmap
+from PySide6.QtCore import Qt,QSize
+from PySide6.QtGui import QPixmap,QIcon
+
 from datetime import datetime
 import sys
 import os
@@ -41,14 +38,8 @@ class MenuUrna(QWidget):
         txt_urna.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         btn_zerezima = QPushButton("Rélatorio inicial (Zerézima)")
-<<<<<<< HEAD
-        layout.addWidget(btn_zerezima,alignment=Qt.AlignmentFlag.AlignCenter)
-        btn_zerezima.setFixedSize(250,50)
-        btn_zerezima.setCursor(Qt.CursorShape.PointingHandCursor)
-=======
         layout.addWidget(btn_zerezima, alignment=Qt.AlignmentFlag.AlignCenter)
         btn_zerezima.setFixedSize(250, 50)
->>>>>>> c82fa7215c035683238faa030bdb310432ea9c92
 
         btn_votar = QPushButton("Votar")
         btn_votar.clicked.connect(lambda:votar())
@@ -86,14 +77,6 @@ class MenuUrna(QWidget):
             titular.setAlignment(Qt.AlignmentFlag.AlignLeft)
             return titular
 
-<<<<<<< HEAD
-
-        def zerezima():
-            verificacao_zerezima = True
-            #fazer logicoa pra chamar a tela
-            pass
-
-=======
         def _caixa():
             caixa = QWidget()
             caixa.setObjectName("caixa_informacoes")
@@ -112,18 +95,11 @@ class MenuUrna(QWidget):
         tela_zerezima.setWindowFlags(
             Qt.WindowType.FramelessWindowHint | Qt.WindowType.Dialog
         )
->>>>>>> c82fa7215c035683238faa030bdb310432ea9c92
 
         caminho_estilo = os.path.join(
             os.path.dirname(__file__), "estilo", "estilo_zerezima.qss"
         )
 
-<<<<<<< HEAD
-
-        def relatorio():
-            pass
-
-=======
     
 
         layout_principal = QVBoxLayout(tela_zerezima)
@@ -357,7 +333,6 @@ class MenuUrna(QWidget):
             tela_sair.setStyleSheet(arquivo.read())
 
         tela_sair.exec()
->>>>>>> c82fa7215c035683238faa030bdb310432ea9c92
 
 
 if __name__ == "__main__":
