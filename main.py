@@ -1,6 +1,9 @@
 from PySide6.QtWidgets import QLabel, QVBoxLayout,QPushButton,QWidget,QApplication,QFrame
 from PySide6.QtCore import Qt
 import sys,os
+from pathlib import Path
+from backend.tela_titulo_eleitor import TelaTituloEleitor
+
 
 class MenuUrna(QWidget):
     def __init__(self):
@@ -10,7 +13,7 @@ class MenuUrna(QWidget):
         self.setLayout(layout)
         
 
-        verificacao_zerezima = False
+        verificacao_zerezima = True
 
         layout.addStretch(1)
         txt_urna = QLabel("Urna Eletrónica")
@@ -22,6 +25,7 @@ class MenuUrna(QWidget):
         btn_zerezima.setFixedSize(250,50)
 
         btn_votar = QPushButton("Votar")
+        btn_votar.clicked.connect(lambda:votar())
         layout.addWidget(btn_votar,alignment=Qt.AlignmentFlag.AlignCenter)
         btn_votar.setFixedSize(250,50)
     
@@ -36,6 +40,7 @@ class MenuUrna(QWidget):
         layout.addStretch(1)
 
 
+        tela_eleitor = TelaTituloEleitor()
 
 
         def zerezima():
@@ -46,7 +51,10 @@ class MenuUrna(QWidget):
 
         def votar():
             if verificacao_zerezima == True:
-                pass #fazer codigo para chamar a tela de votação
+                self.close()
+                tela_eleitor.show()
+                
+                
             elif verificacao_zerezima == False:
                 pass#Fazer popup para fazer a zerezima primeiro
 
@@ -58,6 +66,9 @@ class MenuUrna(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    with open("estilo/estilo.qss", "r", encoding="utf-8") as arquivo:
+        app.setStyleSheet(arquivo.read())
     janela = MenuUrna()
     janela.show()
     sys.exit(app.exec())
+
