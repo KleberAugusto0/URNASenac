@@ -1,8 +1,16 @@
+import os
 import sys
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QTimer, QUrl
 from PySide6.QtGui import QPixmap
+from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtWidgets import (
-    QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QApplication
+    QApplication,
+    QDialog,
+    QFrame,
+    QHBoxLayout,
+    QLabel,
+    QPushButton,
+    QVBoxLayout,
 )
 
 
@@ -13,8 +21,25 @@ class TelaConfirmacaoVoto(QDialog):
         self.setModal(True)
         self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
         self.setFixedSize(420, 320)
+
+        
+
+        self.player = QMediaPlayer(self)
+        self.audio = QAudioOutput(self)
+        self.player.setAudioOutput(self.audio)
+
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        caminho_som = os.path.join(base_dir, "..", "efeitos_sonoros", "som_urna.mp3")
+        if not os.path.exists(caminho_som):
+            caminho_som = os.path.join(base_dir, "efeitos_sonoros", "som_urna.mp3")
+
+        self.player.setSource(QUrl.fromLocalFile(caminho_som))
+
         self.montar_interface()
 
+    def tocar_som_e_confirmar(self):
+        self.player.play()
+        QTimer.singleShot(1500, self.accept)
 
     def montar_interface(self):
         layout_raiz = QVBoxLayout(self)
@@ -43,7 +68,7 @@ class TelaConfirmacaoVoto(QDialog):
         self.lbl_icone.setObjectName("lbl_icone")
         self.lbl_icone.setAlignment(Qt.AlignCenter)
 
-        pixmap_icone = QPixmap("imagens/") 
+        pixmap_icone = QPixmap("imagens/") #Parametro que recebe a foto do candidato
         self.lbl_icone.setPixmap(
             pixmap_icone.scaled(64, 64, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         )
@@ -57,13 +82,13 @@ class TelaConfirmacaoVoto(QDialog):
         layout_card.addWidget(self.lbl_titulo_candidato)
         layout_card.addSpacing(10)
 
-        self.lbl_titulo = QLabel("Mateus") 
+        self.lbl_titulo = QLabel("Mateus") #Parametro do nome do candidato
         self.lbl_titulo.setObjectName("lbl_titulo")
         self.lbl_titulo.setAlignment(Qt.AlignCenter)
         layout_card.addWidget(self.lbl_titulo)
         layout_card.addSpacing(10)
 
-        self.lbl_mensagem = QLabel("13") 
+        self.lbl_mensagem = QLabel("13") #Parametro do numero 
         self.lbl_mensagem.setObjectName("lbl_mensagem")
         self.lbl_mensagem.setAlignment(Qt.AlignCenter)
         layout_card.addWidget(self.lbl_mensagem)
@@ -84,22 +109,18 @@ class TelaConfirmacaoVoto(QDialog):
         self.btn_confirmar.setObjectName("btn_confirmar")
         self.btn_confirmar.setCursor(Qt.PointingHandCursor)
         self.btn_confirmar.setDefault(True)
-        self.btn_confirmar.clicked.connect(self.accept)
+        self.btn_confirmar.clicked.connect(self.tocar_som_e_confirmar)
 
 
         layout_card.addLayout(layout_botoes)
 
-        layout_botoes.setSpacing(16)   
+        layout_botoes.setSpacing(16)   # espaço entre os botões
 
         layout_botoes.addWidget(self.btn_cancelar)
         layout_botoes.addWidget(self.btn_confirmar)
 
 
 
-
-        
-
-        
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
@@ -109,5 +130,3 @@ if __name__ == "__main__":
 
     tela_confirmacao = TelaConfirmacaoVoto()
     tela_confirmacao.exec()
-
-
