@@ -24,21 +24,21 @@ class TelaConfirmacaoVoto(QDialog):
 
         
 
-        self.player = QMediaPlayer(self)
+        self.reprodutor = QMediaPlayer(self)
         self.audio = QAudioOutput(self)
-        self.player.setAudioOutput(self.audio)
+        self.reprodutor.setAudioOutput(self.audio)
 
         base_dir = os.path.dirname(os.path.abspath(__file__))
         caminho_som = os.path.join(base_dir, "..", "efeitos_sonoros", "som_urna.mp3")
         if not os.path.exists(caminho_som):
             caminho_som = os.path.join(base_dir, "efeitos_sonoros", "som_urna.mp3")
 
-        self.player.setSource(QUrl.fromLocalFile(caminho_som))
+        self.reprodutor.setSource(QUrl.fromLocalFile(caminho_som))
 
         self.montar_interface()
 
     def tocar_som_e_confirmar(self):
-        self.player.play()
+        self.reprodutor.play()
         QTimer.singleShot(1500, self.accept)
 
     def montar_interface(self):
