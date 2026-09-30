@@ -1,10 +1,10 @@
 QDialog#tela_confirmacao {
-    background-color: #12203A;
+    background-color: transparent;
 }
 
 QFrame#card_confirmacao {
-    background-color: #0B1A2E;
-    border: 1px solid #1F5F99;
+    background-color: #05192F;
+    border: 2px solid #123559;
     border-radius: 12px;
 }
 
@@ -13,56 +13,43 @@ QLabel#lbl_icone {
 }
 
 QLabel#lbl_titulo {
-    color: #FFFFFF;
+    color: #F0FDFF;
     font-size: 20px;
     font-weight: bold;
     background: transparent;
 }
 
 QLabel#lbl_mensagem {
-    color: #E6EDF5;
+    color: #93B9D6;
     font-size: 13px;
     background: transparent;
 }
 
 QPushButton#btn_ok {
-    background-color: #1877F2;
-    color: #FFFFFF;
+    background-color: #056CE7;
+    color: #F0FDFF;
     font-size: 14px;
     font-weight: bold;
     border: none;
     border-radius: 6px;
+    min-height: 36px;
 }
-QPushButton#btn_ok:hover   { background-color: #2E88FF; }
-QPushButton#btn_ok:pressed { background-color: #1266D6; }
+
+QPushButton#btn_ok:hover {
+    background-color: #2E88FF;
+}
+
+QPushButton#btn_ok:pressed {
+    background-color: #1266D6;
+}
 
 QPushButton#btn_fechar {
     background: transparent;
-    color: #FFFFFF;
+    color: #93B9D6;
     font-size: 16px;
     border: none;
 }
+
 QPushButton#btn_fechar:hover {
-    color: #8FB8E8;
+    color: #D62039;
 }
-
-Azul - Fundo principal/ cor principal - #13263C
-
-Azul escuro - Utilização para os popup’s - #05192F
-
-Azul claro - utilização de cor para os botões iniciais - #056CE7
-
-Vermelho - Utilização para os botões de saida - #D62039
-
-Branco - Utilização para os textos dos botões - #F0FDFF
-
-Azul mais claro- Utilização para os textos menores - #93B9D6 
-
-Azul mediano - Utilização para os botões de “Cancelar” - #334A68
-
-Verde - Utilização de cor para icones “Confirmado” - #2FA94B
-
-Azul - Utilização para as bordas - #123559
-
-Cinza - Borda input - #4B6685
-

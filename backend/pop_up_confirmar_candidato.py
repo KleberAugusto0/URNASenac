@@ -43,7 +43,7 @@ class TelaConfirmacaoVoto(QDialog):
         self.lbl_icone.setObjectName("lbl_icone")
         self.lbl_icone.setAlignment(Qt.AlignCenter)
 
-        pixmap_icone = QPixmap("imagens/") #Parametro que recebe a foto do candidato
+        pixmap_icone = QPixmap("imagens/") 
         self.lbl_icone.setPixmap(
             pixmap_icone.scaled(64, 64, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         )
@@ -57,13 +57,13 @@ class TelaConfirmacaoVoto(QDialog):
         layout_card.addWidget(self.lbl_titulo_candidato)
         layout_card.addSpacing(10)
 
-        self.lbl_titulo = QLabel("Mateus") #Parametro do nome do candidato
+        self.lbl_titulo = QLabel("Mateus") 
         self.lbl_titulo.setObjectName("lbl_titulo")
         self.lbl_titulo.setAlignment(Qt.AlignCenter)
         layout_card.addWidget(self.lbl_titulo)
         layout_card.addSpacing(10)
 
-        self.lbl_mensagem = QLabel("13") #Parametro do numero 
+        self.lbl_mensagem = QLabel("13") 
         self.lbl_mensagem.setObjectName("lbl_mensagem")
         self.lbl_mensagem.setAlignment(Qt.AlignCenter)
         layout_card.addWidget(self.lbl_mensagem)
@@ -89,7 +89,7 @@ class TelaConfirmacaoVoto(QDialog):
 
         layout_card.addLayout(layout_botoes)
 
-        layout_botoes.setSpacing(16)   # espaço entre os botões
+        layout_botoes.setSpacing(16)   
 
         layout_botoes.addWidget(self.btn_cancelar)
         layout_botoes.addWidget(self.btn_confirmar)
