@@ -1,0 +1,49 @@
+QFrame#card_container {
+    background-color: #05192F;
+    border: 1px solid #334A68;
+    border-radius: 12px;
+}
+
+QLabel#icon_info {
+    background-color: #056CE7;
+    color: #05192F;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 18px;
+    min-width: 36px;
+    max-width: 36px;
+    min-height: 36px;
+    max-height: 36px;
+    qproperty-alignment: 'AlignCenter';
+}
+
+QLabel#label_titulo {
+    color: #F0FDFF;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+QLabel#label_mensagem {
+    color: #93B9D6;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+QPushButton#botao_ok {
+    background-color: #056CE7;
+    color: #F0FDFF;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    min-width: 120px;
+    padding: 8px 24px;
+}
+
+QPushButton#botao_ok:hover {
+    background-color: #1A7CF5;
+}
+
+QPushButton#botao_ok:pressed {
+    background-color: #0454B3;
+}
