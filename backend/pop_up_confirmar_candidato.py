@@ -6,12 +6,10 @@ from PySide6.QtWidgets import (
 )
 
 
-
-
 class TelaConfirmacaoVoto(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setObjectName("tela_voto_nulo")
+        self.setObjectName("tela_confirmar_candidato")
         self.setModal(True)
         self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
         self.setFixedSize(420, 320)
@@ -23,7 +21,7 @@ class TelaConfirmacaoVoto(QDialog):
         layout_raiz.setContentsMargins(24, 24, 24, 24)
 
         self.card = QFrame()
-        self.card.setObjectName("card_voto_nulo")
+        self.card.setObjectName("card_confirmar_candidato")
         layout_raiz.addWidget(self.card)
 
         layout_card = QVBoxLayout(self.card)
@@ -45,21 +43,27 @@ class TelaConfirmacaoVoto(QDialog):
         self.lbl_icone.setObjectName("lbl_icone")
         self.lbl_icone.setAlignment(Qt.AlignCenter)
 
-        pixmap_icone = QPixmap("imagens/icone_alerta.png")
+        pixmap_icone = QPixmap("imagens/") #Parametro que recebe a foto do candidato
         self.lbl_icone.setPixmap(
             pixmap_icone.scaled(64, 64, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         )
-
+        
         layout_card.addWidget(self.lbl_icone, alignment=Qt.AlignHCenter)
-        layout_card.addSpacing(16)
+        layout_card.addSpacing(13)
 
-        self.lbl_titulo = QLabel("Voto nulo!")
+        self.lbl_titulo_candidato = QLabel("Candidato")
+        self.lbl_titulo_candidato.setObjectName("lbl_titulo")
+        self.lbl_titulo_candidato.setAlignment(Qt.AlignCenter)
+        layout_card.addWidget(self.lbl_titulo_candidato)
+        layout_card.addSpacing(10)
+
+        self.lbl_titulo = QLabel("Mateus") #Parametro do nome do candidato
         self.lbl_titulo.setObjectName("lbl_titulo")
         self.lbl_titulo.setAlignment(Qt.AlignCenter)
         layout_card.addWidget(self.lbl_titulo)
-        layout_card.addSpacing(12)
+        layout_card.addSpacing(10)
 
-        self.lbl_mensagem = QLabel("O número digitado não corresponde \n a nenhum candidato. \nDeseja confirmar o voto nulo?")
+        self.lbl_mensagem = QLabel("13") #Parametro do numero 
         self.lbl_mensagem.setObjectName("lbl_mensagem")
         self.lbl_mensagem.setAlignment(Qt.AlignCenter)
         layout_card.addWidget(self.lbl_mensagem)
@@ -100,7 +104,7 @@ class TelaConfirmacaoVoto(QDialog):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    with open("estilo/estilo_pop_up_voto_nulo.qss", encoding="utf-8") as arquivo:
+    with open("estilo/estilo_confirmar_candidato.qss", encoding="utf-8") as arquivo:
         app.setStyleSheet(arquivo.read())
 
     tela_confirmacao = TelaConfirmacaoVoto()
