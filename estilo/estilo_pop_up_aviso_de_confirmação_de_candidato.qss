@@ -1,0 +1,66 @@
+QFrame#card_container {
+    background-color: #05192F;
+    border: 1px solid #334A68;
+    border-radius: 12px;
+}
+
+QPushButton#btn_fechar {
+    background-color: transparent;
+    color: #93B9D6;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+}
+
+QPushButton#btn_fechar:hover {
+    color: #F0FDFF;
+}
+
+QLabel#avatar_box {
+    border-radius: 6px;
+}
+
+QLabel#label_subtitulo {
+    color: #93B9D6;
+    font-size: 12px;
+}
+
+QLabel#label_nome {
+    color: #F0FDFF;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+QLabel#label_numero {
+    color: #056CE7;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+QPushButton#botao_cancelar {
+    background-color: #334A68;
+    color: #F0FDFF;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 24px;
+}
+
+QPushButton#botao_cancelar:hover {
+    background-color: #425D80;
+}
+
+QPushButton#botao_confirmar {
+    background-color: #056CE7;
+    color: #F0FDFF;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 24px;
+}
+
+QPushButton#botao_confirmar:hover {
+    background-color: #1A7CF5;
+}

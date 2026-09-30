@@ -103,11 +103,11 @@ class PopupCandidato(QDialog):
     def carregar_estilo(self):
         base_dir = Path(__file__).resolve().parent
         caminhos_possiveis = [
-            base_dir / "estilo.qss",
-            base_dir / "estilo" / "estilo.qss",
-            base_dir / "estilos" / "estilo.qss",
-            base_dir.parent / "estilo" / "estilo.qss",
-            base_dir.parent / "estilo.qss"
+            base_dir / "estilo_pop_up_aviso_de_confirmação_de_candidato.qss",
+            base_dir / "estilo" / "estilo_pop_up_aviso_de_confirmação_de_candidato.qss",
+            base_dir / "estilos" / "estilo_pop_up_aviso_de_confirmação_de_candidato.qss",
+            base_dir.parent / "estilo" / "estilo_pop_up_aviso_de_confirmação_de_candidato.qss",
+            base_dir.parent / "estilo_pop_up_aviso_de_confirmação_de_candidato.qss"
         ]
         
         qss_encontrado = None
