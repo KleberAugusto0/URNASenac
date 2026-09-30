@@ -16,6 +16,9 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from tela_confirmacao_voto import TelaConfirmacaoVoto
+from candidatos import candidatos_cadastrados
+
 
 class TelaDeVotacao(QMainWindow):
 
@@ -123,6 +126,7 @@ class TelaDeVotacao(QMainWindow):
         botao_confirmar = QPushButton("Confirmar")
         botao_confirmar.setObjectName("botaoConfirmar")
         botao_confirmar.setFixedHeight(50)
+        botao_confirmar.clicked.connect(lambda:self.autenticador())
         layout_grade.addWidget(botao_confirmar, 3, 2)
 
         layout_painel.addLayout(layout_grade)
@@ -139,6 +143,7 @@ class TelaDeVotacao(QMainWindow):
                 self.setStyleSheet(arquivo.read())
         else:
             print(f"Aviso: Arquivo de estilo não encontrado em {caminho_estilo}")
+        
 
     def adicionar_digito(self, digito: str) -> None:
         if len(self.digitos_digitados) < 5:
@@ -158,6 +163,21 @@ class TelaDeVotacao(QMainWindow):
             self.visor.setProperty("inativo", "false")
         self.visor.style().unpolish(self.visor)
         self.visor.style().polish(self.visor)
+
+    def autenticador(self):
+        for candidado in candidatos_cadastrados:
+            if candidado.numero == str(self.visor.text()):
+                self.voto_confirmado()
+            else:
+                pass
+
+    def voto_confirmado(self):
+        TelaConfirmacaoVoto().exec()
+         
+
+    def voto_nulo(self):
+        pass
+
 
 
 if __name__ == "__main__":

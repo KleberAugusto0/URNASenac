@@ -14,6 +14,9 @@ class TelaConfirmacaoVoto(QDialog):
         self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
         self.setFixedSize(420, 320)
         self.montar_interface()
+        with open("estilo/estilo_confirmacao_voto.qss", encoding="utf-8") as arquivo:
+                self.setStyleSheet(arquivo.read())
+        
 
     def montar_interface(self):
         layout_raiz = QVBoxLayout(self)
@@ -71,12 +74,3 @@ class TelaConfirmacaoVoto(QDialog):
         self.btn_ok.clicked.connect(self.accept)
         layout_card.addWidget(self.btn_ok, alignment=Qt.AlignHCenter)
 
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-
-    with open("estilo/estilo_confirmacao_voto.qss", encoding="utf-8") as arquivo:
-        app.setStyleSheet(arquivo.read())
-
-    tela_confirmacao = TelaConfirmacaoVoto()
-    tela_confirmacao.exec()
