@@ -1,0 +1,110 @@
+/* Configuração base da janela */
+QMainWindow, QWidget#tela_votacao {
+    background-color: #03162B;
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+}
+
+/* Cabeçalho */
+QLabel#tituloVotar {
+    color: #F0FDFF;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    background: transparent;
+}
+
+QLabel#subtituloVotar {
+    color: #93B9D6;
+    font-size: 13px;
+    font-weight: 500;
+    background: transparent;
+}
+
+
+QFrame#painelTeclado {
+    background-color: #091F37;
+    border: 1px solid #123559;
+    border-radius: 12px;
+}
+
+
+QLineEdit#visor {
+    background-color: #05192F;
+    color: #F0FDFF;
+    border: 1.5px solid #123559;
+    border-radius: 8px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 12px;
+    padding-left: 12px;
+    qproperty-alignment: 'AlignCenter'; 
+}
+
+
+QLineEdit#visor[inativo="true"] {
+    color: #93B9D6;
+}
+
+
+
+QPushButton.botaoNumerico {
+    background-color: #213550;
+    color: #F0FDFF;
+    border: 1px solid #123559;
+    border-radius: 8px;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+QPushButton.botaoNumerico:hover {
+    background-color: #334A68;
+    border-color: #4B6685;
+}
+
+QPushButton.botaoNumerico:pressed {
+    background-color: #05192F;
+}
+
+/* Botão Limpar / Corrigir */
+QPushButton#botaoLimpar {
+    background-color: #334A68;
+    color: #F0FDFF;
+    border: 1px solid #123559;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+QPushButton#botaoLimpar:hover {
+    background-color: #4B6685;
+}
+
+QPushButton#botaoLimpar:pressed {
+    background-color: #13263C;
+}
+
+/* Botão Confirmar */
+QPushButton#botaoConfirmar {
+    background-color: #056CE7;
+    color: #F0FDFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+QPushButton#botaoConfirmar:hover {
+    background-color: #1A76FF;
+}
+
+QPushButton#botaoConfirmar:pressed {
+    background-color: #0052CC;
+}
+
+
+QPushButton:disabled {
+    background-color: #122234;
+    color: #4B6685;
+    border: 1px solid #1A2E44;
+}

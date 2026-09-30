@@ -24,6 +24,9 @@ class MenuUrna(QWidget):
 
         layout = QVBoxLayout()
         self.setLayout(layout)
+        
+
+        verificacao_zerezima = True
 
         self.verificacao_zerezima = False
         
@@ -38,8 +41,10 @@ class MenuUrna(QWidget):
         btn_zerezima.setFixedSize(250, 50)
 
         btn_votar = QPushButton("Votar")
-        layout.addWidget(btn_votar, alignment=Qt.AlignmentFlag.AlignCenter)
-        btn_votar.setFixedSize(250, 50)
+        btn_votar.clicked.connect(lambda:votar())
+        layout.addWidget(btn_votar,alignment=Qt.AlignmentFlag.AlignCenter)
+        btn_votar.setFixedSize(250,50)
+    
 
         btn_relatorio = QPushButton("Relatório Final")
         layout.addWidget(btn_relatorio, alignment=Qt.AlignmentFlag.AlignCenter)
@@ -327,6 +332,10 @@ class MenuUrna(QWidget):
 
         tela_sair.exec()
 
+        self.botao_ok = QPushButton("Ok")
+        self.botao_ok.setObjectName("botao_ok")
+        self.botao_ok.setCursor(Qt.PointingHandCursor)
+        self.botao_ok.clicked.connect(self.accept)
 
 if __name__ == "__main__":
 
