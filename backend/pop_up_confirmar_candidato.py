@@ -16,7 +16,7 @@ from PySide6.QtWidgets import (
 from candidatos import Candidato
 
 class TelaConfirmacaoVoto(QDialog):
-    def __init__(self, candidato = Candidato, parent=None):
+    def __init__(self, candidato : Candidato, parent=None):
         super().__init__(parent)
         self.setObjectName("tela_confirmar_candidato")
         self.candidato = candidato
@@ -136,10 +136,24 @@ class TelaConfirmacaoVoto(QDialog):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    with open("estilo/estilo_confirmar_candidato.qss", encoding="utf-8") as arquivo:
+    with open("estilo_confirmar_candidato.qss", encoding="utf-8") as arquivo:
         app.setStyleSheet(arquivo.read())
 
-        
-
-    tela_confirmacao = TelaConfirmacaoVoto()
+    teste = Candidato("002", "Barriguinha mole", "Presidente",
+                      "candidato_barriguinha_mole.webp")
+    tela_confirmacao = TelaConfirmacaoVoto(teste)   # passando o candidato
     tela_confirmacao.exec()
+
+    # tela_confirmacao = TelaConfirmacaoVoto()
+    # tela_confirmacao.exec()
+
+
+
+import sys
+from PySide6.QtWidgets import (
+    QWidget,QVBoxLayout,QHBoxLayout,
+    QLineEdit, QComboBox, QPushButton,
+    QTableWidgetItem, QHeaderView,QLabel, QTableWidget
+)
+from PySide6.QtWidgets import QApplication
+from PySide6.QtCore import Signal

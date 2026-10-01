@@ -8,17 +8,16 @@ from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import Signal
 
 
-
 class Candidato:
-    def __init__(self, numero: str, nome: str , cargo: str , foto = str):
+    def __init__(self, numero: str, nome: str , cargo: str , foto: str = ""):
         self.numero = numero
         self.nome = nome
         self.cargo = cargo.upper()
         self.foto = foto
 
 candidatos_cadastrados = [
-    Candidato("001" , "Dollynho", "Presidente", "imagens/candidato_barriguinha_mole.webp"),
-    Candidato("002" , "Barriguinha mole", "Presidente", "imagens/candidato_dollynho.webp"),
+    Candidato("001" , "Dollynho", "Presidente", "imagens/candidato_dollynho.webp"), 
+    Candidato("002" , "Barriguinha mole", "Presidente", "imagens/candidato_barriguinha_mole.webp"),
     Candidato("003" , "Naruto" , "Presidente" , "imagens/candidato_naruto.webp"),
 ]
 
@@ -45,8 +44,8 @@ class TelaCandidatos(QWidget):
         # layout_filtro.addWidget(self.combo_filtro)
 
         self.tabela_candidatos = QTableWidget()
-        self.tabela_candidatos.setColumnCount(5)
-        self.tabela_candidatos.setHorizontalHeaderLabels(["Cargo", "Número", "Nome", "Partido"])
+        self.tabela_candidatos.setColumnCount(3)
+        self.tabela_candidatos.setHorizontalHeaderLabels(["Cargo", "Número", "Nome"])
         self.tabela_candidatos.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         # layout_principal.addLayout(layout_filtro)
@@ -57,7 +56,7 @@ class TelaCandidatos(QWidget):
         for candidato in self.lista_candidatos:
             posicao = self.tabela_candidatos.rowCount()
             self.tabela_candidatos.insertRow(posicao)
-            self.tabela_candidatos.setItem(posicao, 0, QTableWidget(candidato.cargo))
+            self.tabela_candidatos.setItem(posicao, 0, QTableWidgetItem(candidato.cargo))
             self.tabela_candidatos.setItem(posicao, 1, QTableWidget(candidato.numero))
             self.tabela_candidatos.setItem(posicao, 2, QTableWidget(candidato.nome))
 
@@ -81,7 +80,7 @@ class TelaCandidatos(QWidget):
     #         filtrados = [candidato for candidato in self.lista_candidatos if candidato.cargo == cargo_selecionado]
     #         self.atualizar_tabela(filtrados)
 
-    def buscar_candidato(self, cargo: str, numero: str) -> Candidato | None:
+def buscar_candidato(self, cargo: str, numero: str) -> Candidato | None:
         cargo_formatado = cargo.upper()
         for candidato in self.lista_candidatos:
             if candidato.cargo == cargo_formatado and candidato.numero == numero:
