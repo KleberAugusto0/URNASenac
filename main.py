@@ -36,29 +36,29 @@ class MenuUrna(QWidget):
         layout.addWidget(txt_urna)
         txt_urna.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        btn_zerezima = QPushButton("Rélatorio inicial (Zerézima)")
-        layout.addWidget(btn_zerezima, alignment=Qt.AlignmentFlag.AlignCenter)
-        btn_zerezima.setFixedSize(250, 50)
+        botao_zerezima = QPushButton("Rélatorio inicial (Zerézima)")
+        layout.addWidget(botao_zerezima, alignment=Qt.AlignmentFlag.AlignCenter)
+        botao_zerezima.setFixedSize(250, 50)
 
-        btn_votar = QPushButton("Votar")
-        btn_votar.clicked.connect(lambda:votar())
-        layout.addWidget(btn_votar,alignment=Qt.AlignmentFlag.AlignCenter)
-        btn_votar.setFixedSize(250,50)
+        botao_votar = QPushButton("Votar")
+        botao_votar.clicked.connect(lambda:votar())
+        layout.addWidget(botao_votar,alignment=Qt.AlignmentFlag.AlignCenter)
+        botao_votar.setFixedSize(250,50)
     
 
-        btn_relatorio = QPushButton("Relatório Final")
-        layout.addWidget(btn_relatorio, alignment=Qt.AlignmentFlag.AlignCenter)
-        btn_relatorio.setFixedSize(250, 50)
+        botao_relatorio = QPushButton("Relatório Final")
+        layout.addWidget(botao_relatorio, alignment=Qt.AlignmentFlag.AlignCenter)
+        botao_relatorio.setFixedSize(250, 50)
 
-        btn_sair = QPushButton("Sair")
-        btn_sair.setObjectName("btn_sair")
-        layout.addWidget(btn_sair, alignment=Qt.AlignmentFlag.AlignCenter)
-        btn_sair.setFixedSize(250, 50)
+        botao_sair = QPushButton("Sair")
+        botao_sair.setObjectName("botao_sair")
+        layout.addWidget(botao_sair, alignment=Qt.AlignmentFlag.AlignCenter)
+        botao_sair.setFixedSize(250, 50)
 
        
-        btn_votar.clicked.connect(self.votar)
-        btn_relatorio.clicked.connect(self.relatorio)
-        btn_sair.clicked.connect(self.sairDoSistema)
+        botao_votar.clicked.connect(self.votar)
+        botao_relatorio.clicked.connect(self.relatorio)
+        botao_sair.clicked.connect(self.sairDoSistema)
 
         layout.addStretch(1)
 
@@ -86,7 +86,7 @@ class MenuUrna(QWidget):
         layout_botoes = QHBoxLayout()
 
         botao_fechar = QPushButton("×")
-        botao_fechar.setObjectName("btn_fechar_x")
+        botao_fechar.setObjectName("botao_fechar_x")
         botao_fechar.clicked.connect(tela_sair.close)
 
         tela_alinhamento.addWidget(botao_fechar, alignment=Qt.AlignmentFlag.AlignRight)
@@ -110,11 +110,11 @@ class MenuUrna(QWidget):
         tela_alinhamento.addWidget(subtitulo, alignment=Qt.AlignmentFlag.AlignCenter)
 
         botao_cancelar = QPushButton("Cancelar")
-        botao_cancelar.setObjectName("btn_cancelar_dialog")
+        botao_cancelar.setObjectName("botao_cancelar_dialog")
         botao_cancelar.clicked.connect(tela_sair.close)
 
         botao_confirmar = QPushButton("Confirmar")
-        botao_confirmar.setObjectName("btn_confirmar_dialog")
+        botao_confirmar.setObjectName("botao_confirmar_dialog")
         botao_confirmar.clicked.connect(QApplication.quit)
 
         layout_botoes.addWidget(botao_cancelar)
