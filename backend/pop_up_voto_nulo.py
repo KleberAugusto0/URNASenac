@@ -1,9 +1,7 @@
 import sys
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import (
-    QApplication, QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout
-)
+from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout)
 
 
 class TelaVotoNulo(QDialog):
@@ -44,7 +42,7 @@ class TelaVotoNulo(QDialog):
         self.label_icone.setObjectName("label_icone")
         self.label_icone.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        pixmap_icone = QPixmap("Imagens/icone_alerta.png")
+        pixmap_icone = QPixmap(str(__import__("pathlib").Path(__file__).resolve().parent.parent / "imagens" / "icone_alerta.png"))
         if not pixmap_icone.isNull():
             self.label_icone.setPixmap(
                 pixmap_icone.scaled(

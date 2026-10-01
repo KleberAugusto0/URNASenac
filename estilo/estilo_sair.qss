@@ -1,8 +1,6 @@
-
 QMainWindow {
     background-color: #13263C;
 }
-
 
 QDialog, QMessageBox {
     background-color: #05192F;

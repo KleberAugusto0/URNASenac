@@ -80,5 +80,3 @@ QPushButton#botao_fechar {
 QPushButton#botao_fechar:hover {
     color: #8FB8E8;
 }
-
-

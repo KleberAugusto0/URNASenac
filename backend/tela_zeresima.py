@@ -1,9 +1,6 @@
 from pathlib import Path
 from datetime import datetime
-from PySide6.QtWidgets import (
-    QDialog, QVBoxLayout, QHBoxLayout, QLabel, 
-    QWidget, QScrollArea, QFrame, QPushButton
-)
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLabel, QWidget, QScrollArea, QFrame, QPushButton)
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt
 
@@ -11,24 +8,28 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 class TelaZerezima(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, urna=None, titulo="ZERÉSIMA", subtitulo="Relatório Inicial", parent=None):
         super().__init__(parent)
+        self.urna = urna
+        self.titulo_relatorio = titulo
+        self.subtitulo_relatorio = subtitulo
+
         self.setWindowState(Qt.WindowState.WindowFullScreen)
         self.setWindowFlags(
             Qt.WindowType.FramelessWindowHint | Qt.WindowType.Dialog
         )
 
-        self.cand_numeros = [10, 20, 30]
-        self.cand_nomes = ["Candidato 01", "Candidato 02", "Candidato 03"]
-        self.cand_partidos = ["Partido A", "Partido B", "Partido C"]
-        self.cand_votos = [0, 0, 0]
-        
-        self.eleitor_titulos = ["1001", "1002", "1003", "1004", "1005"]
-        self.eleitor_nomes = ["goku rodrigues", "guts rogerio", "naruto nicolau", "MauMauOditaddor", "EOMANAURA"]
-        self.eleitor_votou = [False, False, False, False, False]
+        self.cand_numeros = [c.numero for c in urna.candidatos] if urna else ["001", "002", "003"]
+        self.cand_nomes = [c.nome for c in urna.candidatos] if urna else ["Dollynho", "Barriguinha mole", "Naruto"]
+        self.cand_partidos = [c.cargo for c in urna.candidatos] if urna else ["PRESIDENTE"] * 3
+        self.cand_votos = [c.votos for c in urna.candidatos] if urna else [0, 0, 0]
 
-        self.votos_brancos = 0
-        self.votos_nulos = 0
+        self.eleitor_titulos = [e["titulo"] for e in urna.eleitores] if urna else []
+        self.eleitor_nomes = [e["nome"] for e in urna.eleitores] if urna else []
+        self.eleitor_votou = [e["voto_computado"] for e in urna.eleitores] if urna else []
+
+        self.votos_brancos = urna.votos_brancos if urna else 0
+        self.votos_nulos = urna.votos_nulos if urna else 0
 
         self.configurar_interface()
         self.carregar_estilo()
@@ -78,8 +79,8 @@ class TelaZerezima(QDialog):
 
         layout_titulos = QVBoxLayout()
         layout_titulos.setSpacing(6)
-        layout_titulos.addWidget(self._label("ZERÉSIMA", "titulo_zerezima"))
-        layout_titulos.addWidget(self._label("Relatório Inicial", "subtitulo_zerezima"))
+        layout_titulos.addWidget(self._label(self.titulo_relatorio, "titulo_zerezima"))
+        layout_titulos.addWidget(self._label(self.subtitulo_relatorio, "subtitulo_zerezima"))
         layout_topo_painel.addLayout(layout_titulos)
 
         layout_topo_painel.addStretch()
@@ -177,13 +178,9 @@ class TelaZerezima(QDialog):
             with open(caminho_estilo, "r", encoding="utf-8") as arquivo:
                 self.setStyleSheet(arquivo.read())
 
-
-
-
 if __name__ == "__main__":
     import sys
     from PySide6.QtWidgets import QApplication
-
     app = QApplication(sys.argv)
     janela = TelaZerezima()
     janela.show()

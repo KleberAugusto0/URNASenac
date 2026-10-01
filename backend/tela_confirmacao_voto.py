@@ -44,7 +44,7 @@ class TelaConfirmacaoVoto(QDialog):
         self.label_icone.setObjectName("label_icone")
         self.label_icone.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        pixmap_icone = QPixmap("Imagens/correto.png")
+        pixmap_icone = QPixmap(str(__import__("pathlib").Path(__file__).resolve().parent.parent / "imagens" / "correto.png"))
         if not pixmap_icone.isNull():
             self.label_icone.setPixmap(
                 pixmap_icone.scaled(
@@ -80,14 +80,9 @@ class TelaConfirmacaoVoto(QDialog):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    caminho_qss = "estilo/estilo_confirmacao_voto.qss"
-    try:
+    caminho_qss = __import__("pathlib").Path(__file__).resolve().parent.parent / "estilo" / "estilo_confirmacao_voto.qss"
+    if caminho_qss.exists():
         with open(caminho_qss, encoding="utf-8") as arquivo:
             app.setStyleSheet(arquivo.read())
-    except FileNotFoundError:
-        pass
-
-    with open("estilo/estilo_confirmacao_voto.qss", encoding="utf-8") as arquivo:
-        app.setStyleSheet(arquivo.read())
     tela_confirmacao = TelaConfirmacaoVoto()
     tela_confirmacao.exec()

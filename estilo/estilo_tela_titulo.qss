@@ -1,8 +1,6 @@
-
 QWidget#tela_titulo_eleitor {
     background-color: #05192F;
 }
-
 
 QFrame#background-inp {
     background-color: #13263C;
@@ -47,7 +45,6 @@ QLineEdit:focus {
     border: 2px solid #056CE7; 
 }
 
-/* Botão Confirmar */
 QPushButton#botao_confirmar {
     background-color: #056CE7;
     color: #F0FDFF;
@@ -65,7 +62,6 @@ QPushButton#botao_confirmar:pressed {
     background-color: #1266D6;
 }
 
-/* Botão Cancelar */
 QPushButton#botao_cancelar {
     background-color: #334A68;
     color: #F0FDFF;
