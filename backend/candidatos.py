@@ -18,10 +18,10 @@ class Candidato:
         self.vice = vice
 
 candidatos_cadastrados = [
-    Candidato("11111", "Gyaradus", "P-POKEMON", "VEREADOR"),
-    Candidato("22222", "Naruto", "P-VILA_FOLHA", "VEREADOR"),
-    Candidato("11", "Ronaldo", "P-FUTEZIN", "PREFEITO", vice= "Messi"),
-    Candidato("22", "Orangotango", "P-AMAZONIA", "PREFEITO", vice= "Gorila tonhão")
+    Candidato("001" , "Dollynho", "Presidente"),
+    Candidato("002" , "Eren", "Presidente"),
+    Candidato("003" , "Naruto" , "Presidente"),
+    Candidato("004" , "Gyro" , "Presidente")
 ]
 
 
