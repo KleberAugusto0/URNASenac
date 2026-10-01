@@ -13,11 +13,13 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from candidatos import Candidato
 
 class TelaConfirmacaoVoto(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, candidato : Candidato, parent=None):
         super().__init__(parent)
         self.setObjectName("tela_confirmar_candidato")
+        self.candidato = candidato
         self.setModal(True)
         self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
         self.setFixedSize(420, 320)
@@ -68,28 +70,36 @@ class TelaConfirmacaoVoto(QDialog):
         self.lbl_icone.setObjectName("lbl_icone")
         self.lbl_icone.setAlignment(Qt.AlignCenter)
 
-        pixmap_icone = QPixmap("imagens/") #Parametro que recebe a foto do candidato
-        self.lbl_icone.setPixmap(
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        caminho_foto = os.path.join(base_dir , self.candidato.foto)
+
+
+        pixmap_icone = QPixmap(caminho_foto) #Parametro que recebe a foto do candidato
+        if not pixmap_icone.isNull():
+
+            self.lbl_icone.setPixmap(
             pixmap_icone.scaled(64, 64, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         )
+        else:
+            self.lbl_icone.setText("Sem foto")
 
         
         layout_card.addWidget(self.lbl_icone, alignment=Qt.AlignHCenter)
         layout_card.addSpacing(13)
 
-        self.lbl_titulo_candidato = QLabel("Candidato")
+        self.lbl_titulo_candidato = QLabel(self.candidato.cargo.title())
         self.lbl_titulo_candidato.setObjectName("lbl_titulo")
         self.lbl_titulo_candidato.setAlignment(Qt.AlignCenter)
         layout_card.addWidget(self.lbl_titulo_candidato)
         layout_card.addSpacing(10)
 
-        self.lbl_titulo = QLabel("Mateus") #Parametro do nome do candidato
+        self.lbl_titulo = QLabel(self.candidato.nome) #Parametro do nome do candidato
         self.lbl_titulo.setObjectName("lbl_titulo")
         self.lbl_titulo.setAlignment(Qt.AlignCenter)
         layout_card.addWidget(self.lbl_titulo)
         layout_card.addSpacing(10)
 
-        self.lbl_mensagem = QLabel("13") #Parametro do numero 
+        self.lbl_mensagem = QLabel(self.candidato.numero) #Parametro do numero 
         self.lbl_mensagem.setObjectName("lbl_mensagem")
         self.lbl_mensagem.setAlignment(Qt.AlignCenter)
         layout_card.addWidget(self.lbl_mensagem)
@@ -126,8 +136,24 @@ class TelaConfirmacaoVoto(QDialog):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    with open("estilo/estilo_confirmar_candidato.qss", encoding="utf-8") as arquivo:
+    with open("estilo_confirmar_candidato.qss", encoding="utf-8") as arquivo:
         app.setStyleSheet(arquivo.read())
 
-    tela_confirmacao = TelaConfirmacaoVoto()
+    teste = Candidato("002", "Barriguinha mole", "Presidente",
+                      "candidato_barriguinha_mole.webp")
+    tela_confirmacao = TelaConfirmacaoVoto(teste)   # passando o candidato
     tela_confirmacao.exec()
+
+    # tela_confirmacao = TelaConfirmacaoVoto()
+    # tela_confirmacao.exec()
+
+
+
+import sys
+from PySide6.QtWidgets import (
+    QWidget,QVBoxLayout,QHBoxLayout,
+    QLineEdit, QComboBox, QPushButton,
+    QTableWidgetItem, QHeaderView,QLabel, QTableWidget
+)
+from PySide6.QtWidgets import QApplication
+from PySide6.QtCore import Signal
