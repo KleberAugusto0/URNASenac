@@ -29,52 +29,52 @@ class TelaConfirmacaoVoto(QDialog):
         layout_card.setContentsMargins(20, 12, 20, 20)
         layout_card.setSpacing(0)
 
-        self.btn_fechar = QPushButton("✕")
-        self.btn_fechar.setObjectName("btn_fechar")
-        self.btn_fechar.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.btn_fechar.setFixedSize(28, 28)
-        self.btn_fechar.clicked.connect(self.accept)
+        self.botao_fechar = QPushButton("✕")
+        self.botao_fechar.setObjectName("botao_fechar")
+        self.botao_fechar.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.botao_fechar.setFixedSize(28, 28)
+        self.botao_fechar.clicked.connect(self.accept)
 
         layout_topo = QHBoxLayout()
         layout_topo.addStretch()
-        layout_topo.addWidget(self.btn_fechar)
+        layout_topo.addWidget(self.botao_fechar)
         layout_card.addLayout(layout_topo)
 
-        self.lbl_icone = QLabel()
-        self.lbl_icone.setObjectName("lbl_icone")
-        self.lbl_icone.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.label_icone = QLabel()
+        self.label_icone.setObjectName("label_icone")
+        self.label_icone.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         pixmap_icone = QPixmap("Imagens/correto.png")
         if not pixmap_icone.isNull():
-            self.lbl_icone.setPixmap(
+            self.label_icone.setPixmap(
                 pixmap_icone.scaled(
                     64, 64, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation
                 )
             )
 
-        layout_card.addWidget(self.lbl_icone, alignment=Qt.AlignmentFlag.AlignHCenter)
+        layout_card.addWidget(self.label_icone, alignment=Qt.AlignmentFlag.AlignHCenter)
         layout_card.addSpacing(16)
 
-        self.lbl_titulo = QLabel("Voto registrado!")
-        self.lbl_titulo.setObjectName("lbl_titulo")
-        self.lbl_titulo.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout_card.addWidget(self.lbl_titulo)
+        self.label_titulo = QLabel("Voto registrado!")
+        self.label_titulo.setObjectName("label_titulo")
+        self.label_titulo.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout_card.addWidget(self.label_titulo)
         layout_card.addSpacing(12)
 
-        self.lbl_mensagem = QLabel("Seu voto foi registrado com sucesso.")
-        self.lbl_mensagem.setObjectName("lbl_mensagem")
-        self.lbl_mensagem.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout_card.addWidget(self.lbl_mensagem)
+        self.label_mensagem = QLabel("Seu voto foi registrado com sucesso.")
+        self.label_mensagem.setObjectName("label_mensagem")
+        self.label_mensagem.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout_card.addWidget(self.label_mensagem)
 
         layout_card.addStretch()
 
-        self.btn_ok = QPushButton("OK")
-        self.btn_ok.setObjectName("btn_ok")
-        self.btn_ok.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.btn_ok.setFixedSize(190, 48)
-        self.btn_ok.setDefault(True)
-        self.btn_ok.clicked.connect(self.accept)
-        layout_card.addWidget(self.btn_ok, alignment=Qt.AlignmentFlag.AlignHCenter)
+        self.botao_ok = QPushButton("OK")
+        self.botao_ok.setObjectName("botao_ok")
+        self.botao_ok.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.botao_ok.setFixedSize(190, 48)
+        self.botao_ok.setDefault(True)
+        self.botao_ok.clicked.connect(self.accept)
+        layout_card.addWidget(self.botao_ok, alignment=Qt.AlignmentFlag.AlignHCenter)
 
 
 if __name__ == "__main__":

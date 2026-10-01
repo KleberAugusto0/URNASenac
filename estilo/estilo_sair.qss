@@ -9,19 +9,19 @@ QDialog, QMessageBox {
 }
 
 
-QPushButton#btnInicial {
+QPushButton#botaoInicial {
     background-color: #056CE7;
     color: #F0FDFF; 
 }
 
 
-QPushButton#btnSaida {
+QPushButton#botaoSaida {
     background-color: #D62039;
     color: #F0FDFF; 
 }
 
 
-QPushButton#btnCancelar {
+QPushButton#botaoCancelar {
     background-color: #334A68;
     color: #F0FDFF; 
 }

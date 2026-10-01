@@ -71,7 +71,7 @@ QWidget#conteudo_scroll {
     background-color: transparent;
 }
 
-QPushButton#btn_voltar_zerezima {
+QPushButton#botao_voltar_zerezima {
     background-color: #0066ff;
     color: white;
     font-size: 26px;
@@ -80,10 +80,10 @@ QPushButton#btn_voltar_zerezima {
     border-radius: 8px;
 }
 
-QPushButton#btn_voltar_zerezima:hover {
+QPushButton#botao_voltar_zerezima:hover {
     background-color: #0052cc;
 }
 
-QPushButton#btn_voltar_zerezima:pressed {
+QPushButton#botao_voltar_zerezima:pressed {
     background-color: #0047b3;
 }

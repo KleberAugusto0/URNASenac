@@ -27,38 +27,38 @@ class TelaAvisoZeresima(QDialog):
         layout_card.setContentsMargins(24, 28, 24, 24)
         layout_card.setSpacing(0)
 
-        self.lbl_icone = QLabel()
-        self.lbl_icone.setObjectName("lbl_icone_aviso")
-        self.lbl_icone.setAlignment(Qt.AlignCenter)
+        self.label_icone = QLabel()
+        self.label_icone.setObjectName("label_icone_aviso")
+        self.label_icone.setAlignment(Qt.AlignCenter)
 
         pixmap_icone = QPixmap("imagens/icone_informacao.png")
-        self.lbl_icone.setPixmap(
+        self.label_icone.setPixmap(
             pixmap_icone.scaled(48, 48, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         )
 
-        layout_card.addWidget(self.lbl_icone, alignment=Qt.AlignHCenter)
+        layout_card.addWidget(self.label_icone, alignment=Qt.AlignHCenter)
         layout_card.addSpacing(12)
 
-        self.lbl_titulo = QLabel("Atenção")
-        self.lbl_titulo.setObjectName("lbl_titulo_aviso")
-        self.lbl_titulo.setAlignment(Qt.AlignCenter)
-        layout_card.addWidget(self.lbl_titulo)
+        self.label_titulo = QLabel("Atenção")
+        self.label_titulo.setObjectName("label_titulo_aviso")
+        self.label_titulo.setAlignment(Qt.AlignCenter)
+        layout_card.addWidget(self.label_titulo)
         layout_card.addSpacing(12)
 
-        self.lbl_mensagem = QLabel("Você precisa realizar a Zerésima\nantes de poder votar.")
-        self.lbl_mensagem.setObjectName("lbl_mensagem_aviso")
-        self.lbl_mensagem.setAlignment(Qt.AlignCenter)
-        layout_card.addWidget(self.lbl_mensagem)
+        self.label_mensagem = QLabel("Você precisa realizar a Zerésima\nantes de poder votar.")
+        self.label_mensagem.setObjectName("label_mensagem_aviso")
+        self.label_mensagem.setAlignment(Qt.AlignCenter)
+        layout_card.addWidget(self.label_mensagem)
 
         layout_card.addStretch()
 
-        self.btn_ok = QPushButton("OK")
-        self.btn_ok.setObjectName("btn_ok_aviso")
-        self.btn_ok.setCursor(Qt.PointingHandCursor)
-        self.btn_ok.setFixedSize(190, 48)
-        self.btn_ok.setDefault(True)
-        self.btn_ok.clicked.connect(self.accept)
-        layout_card.addWidget(self.btn_ok, alignment=Qt.AlignHCenter)
+        self.botao_ok = QPushButton("OK")
+        self.botao_ok.setObjectName("botao_ok_aviso")
+        self.botao_ok.setCursor(Qt.PointingHandCursor)
+        self.botao_ok.setFixedSize(190, 48)
+        self.botao_ok.setDefault(True)
+        self.botao_ok.clicked.connect(self.accept)
+        layout_card.addWidget(self.botao_ok, alignment=Qt.AlignHCenter)
 
 
 if __name__ == "__main__":

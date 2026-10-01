@@ -85,12 +85,12 @@ class TelaZerezima(QDialog):
         layout_topo_painel.addStretch()
 
         agora = datetime.now().strftime("%d/%m/%Y  %H:%M:%S")
-        lbl_data = self._label(
+        label_data = self._label(
             f"Emitido em: {agora}", 
             "data_emissao", 
             Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignTop
         )
-        layout_topo_painel.addWidget(lbl_data)
+        layout_topo_painel.addWidget(label_data)
 
         layout_painel.addLayout(layout_topo_painel)
         layout_painel.addSpacing(30)

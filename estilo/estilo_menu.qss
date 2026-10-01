@@ -11,7 +11,7 @@ QPushButton {
     color: #F0FDFF;
 }
 
-QPushButton#btn_sair {
+QPushButton#botao_sair {
     background-color: #D62039;
     color: #F0FDFF;
 }

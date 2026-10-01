@@ -33,15 +33,15 @@ class TelaTituloEleitor(QWidget):
     layout_principal.setSpacing(16)
 
 
-    self.lbl_icone = QLabel()
-    self.lbl_icone.setFixedSize(80, 80)
-    self.lbl_icone.setScaledContents(True)
+    self.label_icone = QLabel()
+    self.label_icone.setFixedSize(80, 80)
+    self.label_icone.setScaledContents(True)
 
 
     if caminho_icone.exists():
       icone = QPixmap(str(caminho_icone))
       if not icone.isNull():
-        self.lbl_icone.setPixmap(icone)
+        self.label_icone.setPixmap(icone)
 
     txt_votar = QLabel("VOTAR")
     txt_votar.setObjectName("titulo")
@@ -54,7 +54,7 @@ class TelaTituloEleitor(QWidget):
     layout_label.addWidget(txt_subtitulo)
 
     layout_cabecalho = QHBoxLayout()
-    layout_cabecalho.addWidget(self.lbl_icone)
+    layout_cabecalho.addWidget(self.label_icone)
     layout_cabecalho.addLayout(layout_label)
 
     layout_principal.addLayout(layout_cabecalho)
@@ -66,8 +66,8 @@ class TelaTituloEleitor(QWidget):
     layout_frame = QVBoxLayout(self.frame_input)
     layout_frame.setSpacing(8)
 
-    self.lbl_instrucao = QLabel("Título de Eleitor:")
-    self.lbl_instrucao.setObjectName("layout")
+    self.label_instrucao = QLabel("Título de Eleitor:")
+    self.label_instrucao.setObjectName("layout")
 
 
     self.inp_titulo = QLineEdit()
@@ -76,7 +76,7 @@ class TelaTituloEleitor(QWidget):
     self.inp_titulo.setFixedSize(220, 36)
 
     layout_frame.addWidget(
-        self.lbl_instrucao, alignment=Qt.AlignmentFlag.AlignCenter
+        self.label_instrucao, alignment=Qt.AlignmentFlag.AlignCenter
     )
     layout_frame.addWidget(
         self.inp_titulo, alignment=Qt.AlignmentFlag.AlignCenter
@@ -88,22 +88,22 @@ class TelaTituloEleitor(QWidget):
     layout_botoes = QHBoxLayout()
 
  
-    self.btn_cancelar = QPushButton("CANCELAR")
-    self.btn_cancelar.setObjectName("btn_cancelar")
-    self.btn_cancelar.setCursor(
+    self.botao_cancelar = QPushButton("CANCELAR")
+    self.botao_cancelar.setObjectName("botao_cancelar")
+    self.botao_cancelar.setCursor(
         Qt.CursorShape.PointingHandCursor
     ) 
-    self.btn_cancelar.setFixedSize(110, 40)
+    self.botao_cancelar.setFixedSize(110, 40)
 
-    self.btn_confirmar = QPushButton("CONFIRMAR")
-    self.btn_confirmar.setObjectName("btn_confirmar")
-    self.btn_confirmar.setCursor(
+    self.botao_confirmar = QPushButton("CONFIRMAR")
+    self.botao_confirmar.setObjectName("botao_confirmar")
+    self.botao_confirmar.setCursor(
         Qt.CursorShape.PointingHandCursor
     ) 
-    self.btn_confirmar.setFixedSize(110, 40)
+    self.botao_confirmar.setFixedSize(110, 40)
 
-    layout_botoes.addWidget(self.btn_cancelar)
-    layout_botoes.addWidget(self.btn_confirmar)
+    layout_botoes.addWidget(self.botao_cancelar)
+    layout_botoes.addWidget(self.botao_confirmar)
 
     layout_principal.addLayout(layout_botoes)
     layout_principal.addStretch(1)
