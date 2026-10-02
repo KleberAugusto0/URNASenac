@@ -2,7 +2,7 @@ import os
 import sys
 from pathlib import Path
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QPixmap
+from PySide6.QtGui import QPixmap,QIcon
 from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget)
 from backend.urna import Urna
 from backend.pop_up_aviso_da_zeressima import TelaAvisoZeresima
@@ -41,22 +41,26 @@ class MenuUrna(QWidget):
         self.botao_zerezima = QPushButton("Relatório inicial (Zerésima)")
         self.botao_zerezima.setFixedSize(250, 50)
         self.botao_zerezima.clicked.connect(self.emitir_zeresima)
+        self.botao_zerezima.setIcon(QIcon(str(BASE_DIR / "imagens" / "icone_documento.png")))
         layout.addWidget(self.botao_zerezima, alignment=Qt.AlignmentFlag.AlignCenter)
 
         self.botao_votar = QPushButton("Votar")
         self.botao_votar.setFixedSize(250, 50)
         self.botao_votar.clicked.connect(self.votar)
         layout.addWidget(self.botao_votar, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.botao_votar.setIcon(QIcon(str(BASE_DIR / "imagens" / "voting-box.png")))
 
         self.botao_relatorio = QPushButton("Relatório Final")
         self.botao_relatorio.setFixedSize(250, 50)
         self.botao_relatorio.clicked.connect(self.relatorio)
         layout.addWidget(self.botao_relatorio, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.botao_relatorio.setIcon(QIcon(str(BASE_DIR / "imagens" / "icone_grafico.png")))
 
         self.botao_sair = QPushButton("Sair")
         self.botao_sair.setObjectName("botao_sair")
         self.botao_sair.setFixedSize(250, 50)
         self.botao_sair.clicked.connect(self.sair_do_sistema)
+        self.botao_sair.setIcon(QIcon(str(BASE_DIR / "imagens" / "sair.png")))
         layout.addWidget(self.botao_sair, alignment=Qt.AlignmentFlag.AlignCenter)
 
         layout.addStretch(1)
@@ -223,6 +227,7 @@ class MenuUrna(QWidget):
         botao_confirmar.setCursor(Qt.PointingHandCursor)
         botao_confirmar.setFixedHeight(48)
         botao_confirmar.clicked.connect(tela_sair.accept)
+        
 
         layout_botoes.addWidget(botao_cancelar)
         layout_botoes.addWidget(botao_confirmar)

@@ -37,7 +37,7 @@ QPushButton#botao_ok {
     border: none;
     border-radius: 6px;
     min-width: 120px;
-    padding: 8px 24px;
+    padding: 8px 24px; 
 }
 
 QPushButton#botao_ok:hover {

@@ -6,9 +6,14 @@ QLabel {
     color: #F0FDFF;
 }
 
+
 QPushButton {
     background-color: #056CE7;
     color: #F0FDFF;
+    
+    text-align: AlignCenter;
+}
+
 }
 
 QPushButton#botao_sair {
