@@ -1,0 +1,73 @@
+QDialog#tela_voto_nulo {
+    background-color: transparent;
+}
+
+
+QFrame#card_voto_nulo {
+    background-color: #05192F;
+    border: 2px solid #123559;
+    border-radius: 12px;
+}
+
+QLabel#label_icone {
+    background: transparent;
+}
+
+QLabel#label_titulo {
+    color: #F0FDFF;
+    font-size: 20px;
+    font-weight: bold;
+    background: transparent;
+}
+
+QLabel#label_mensagem {
+    color: #93B9D6;
+    font-size: 13px;
+    background: transparent;
+}
+
+QPushButton#botao_fechar {
+    background: transparent;
+    color: #93B9D6;
+    font-size: 16px;
+    border: none;
+}
+
+QPushButton#botao_fechar:hover {
+    color: #D62039;
+}
+
+QPushButton#botao_cancelar {
+    background-color: #334A68;
+    color: #F0FDFF;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    min-height: 36px;
+}
+
+QPushButton#botao_cancelar:hover {
+    background-color: #425e83;
+}
+
+ 
+QPushButton#botao_confirmar {
+    background-color: #056CE7;
+    color: #F0FDFF;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    min-height: 36px;
+}
+
+QPushButton#botao_confirmar:hover {
+    background-color: #2E88FF;
+}
+
+QPushButton#botao_confirmar:pressed {
+    background-color: #1266D6;
+}

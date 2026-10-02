@@ -1,0 +1,80 @@
+QWidget#tela_titulo_eleitor {
+    background-color: #05192F;
+}
+
+QFrame#background-inp {
+    background-color: #13263C;
+    border: 2px solid #123559;
+    border-radius: 10px;
+}
+
+QLabel#layout {
+    color: #F0FDFF;
+    font-size: 14px;
+    font-weight: bold;
+    background: transparent;
+}
+
+
+QLabel {
+    color: #F0FDFF;
+    background: transparent;
+}
+
+QLabel#titulo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #F0FDFF;
+}
+
+QLabel#text_subtitulo {
+    font-size: 13px;
+    color: #93B9D6; 
+}
+
+QLineEdit {
+    color: #F0FDFF;
+    background-color: #05192F;
+    border: 2px solid #4B6685;
+    border-radius: 6px;
+    padding: 0 10px;
+    font-size: 13px;
+}
+
+QLineEdit:focus {
+    border: 2px solid #056CE7; 
+}
+
+QPushButton#botao_confirmar {
+    background-color: #056CE7;
+    color: #F0FDFF;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+}
+
+QPushButton#botao_confirmar:hover {
+    background-color: #2E88FF;
+}
+
+QPushButton#botao_confirmar:pressed {
+    background-color: #1266D6;
+}
+
+QPushButton#botao_cancelar {
+    background-color: #334A68;
+    color: #F0FDFF;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+}
+
+QPushButton#botao_cancelar:hover {
+    background-color: #435E82;
+}
+
+QPushButton#botao_cancelar:pressed {
+    background-color: #24354B;
+}

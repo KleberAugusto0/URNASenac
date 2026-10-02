@@ -1,0 +1,55 @@
+QDialog#tela_sair {
+    background-color: #0B1A2E;
+    border: 1px solid #1F5F99;
+    border-radius: 12px;
+}
+
+QLabel#quadrado_icone {
+    background-color: #E53E3E;
+    border-radius: 42px;
+}
+
+QLabel#titulo_popup {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+    background: transparent;
+}
+
+QLabel#subtitulo_popup {
+    color: #E6EDF5;
+    font-size: 13px;
+    background: transparent;
+}
+
+QPushButton#botao_fechar_x {
+    background: transparent;
+    color: #FFFFFF;
+    font-size: 16px;
+    border: none;
+}
+QPushButton#botao_fechar_x:hover {
+    color: #8FB8E8;
+}
+
+QPushButton#botao_cancelar_dialog {
+    background-color: #3A4A63;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+}
+QPushButton#botao_cancelar_dialog:hover   { background-color: #48597A; }
+QPushButton#botao_cancelar_dialog:pressed { background-color: #2E3B50; }
+
+QPushButton#botao_confirmar_dialog {
+    background-color: #E53E3E;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+}
+QPushButton#botao_confirmar_dialog:hover   { background-color: #F05252; }
+QPushButton#botao_confirmar_dialog:pressed { background-color: #C53030; }

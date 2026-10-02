@@ -1,0 +1,89 @@
+QDialog {
+    background-color: #061122;
+}
+
+QWidget#painel_central {
+    background-color: #061122;
+}
+
+QLabel#quadrado_icone {
+    background-color: transparent;
+}
+
+QLabel#titulo_zerezima {
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+QLabel#subtitulo_zerezima {
+    color: #8fa0b5;
+    font-size: 24px;
+    background-color: transparent;
+}
+
+QLabel#data_zerezima {
+    color: #8fa0b5;
+    font-size: 24px;
+    background-color: transparent;
+}
+
+QWidget#caixa_informacoes {
+    background-color: transparent;
+    border: 1px solid #122c54;
+    border-radius: 8px;
+}
+
+QLabel#titulo_secao {
+    color: #0066ff;
+    font-size: 28px;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+QLabel#texto_informacao {
+    color: white;
+    font-size: 24px;
+    background-color: transparent;
+}
+
+QLabel#situacao_votou {
+    color: #ff5c5c;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+QLabel#situacao_nao_votou {
+    color: #4cd964;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+QScrollArea#area_scroll {
+    background-color: transparent;
+    border: none;
+}
+
+QWidget#conteudo_scroll {
+    background-color: transparent;
+}
+
+QPushButton#botao_voltar_zerezima {
+    background-color: #0066ff;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+}
+
+QPushButton#botao_voltar_zerezima:hover {
+    background-color: #0052cc;
+}
+
+QPushButton#botao_voltar_zerezima:pressed {
+    background-color: #0047b3;
+}
