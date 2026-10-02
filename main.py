@@ -136,50 +136,85 @@ class MenuUrna(QWidget):
 
     def sair_do_sistema(self):
         tela_sair = QDialog(self)
-        tela_sair.setFixedSize(450, 280)
+        tela_sair.setObjectName("tela_sair")
+        tela_sair.setFixedSize(460, 400)
         tela_sair.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Dialog)
 
-        tela_alinhamento = QVBoxLayout(tela_sair)
-        layout_botoes = QHBoxLayout()
+        layout_raiz = QVBoxLayout(tela_sair)
+        layout_raiz.setContentsMargins(24, 16, 24, 24)
+        layout_raiz.setSpacing(0)
 
         botao_fechar = QPushButton("×")
         botao_fechar.setObjectName("botao_fechar_x")
+        botao_fechar.setCursor(Qt.PointingHandCursor)
+        botao_fechar.setFixedSize(28, 28)
         botao_fechar.clicked.connect(tela_sair.reject)
-        tela_alinhamento.addWidget(botao_fechar, alignment=Qt.AlignmentFlag.AlignRight)
+
+        layout_topo = QHBoxLayout()
+        layout_topo.addStretch()
+        layout_topo.addWidget(botao_fechar)
+        layout_raiz.addLayout(layout_topo)
 
         icone = QLabel()
         icone.setObjectName("quadrado_icone")
-        caminho_imagem = BASE_DIR / "imagens" / "exit.png"
+        icone.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        icone.setFixedSize(84, 84)
+        caminho_imagem = BASE_DIR / "imagens" / "sair.png"
         if caminho_imagem.exists():
-            icone.setPixmap(QPixmap(str(caminho_imagem)).scaled(78, 78, Qt.AspectRatioMode.KeepAspectRatio))
-        tela_alinhamento.addWidget(icone, alignment=Qt.AlignmentFlag.AlignCenter)
+            icone.setPixmap(
+                QPixmap(str(caminho_imagem)).scaled(
+                    84, 84, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation
+                )
+            )
+        layout_raiz.addWidget(icone, alignment=Qt.AlignmentFlag.AlignCenter)
+        layout_raiz.addSpacing(16)
 
-        titulo = QLabel("Sair do sistema")
+        titulo = QLabel("Saindo do sistema")
         titulo.setObjectName("titulo_popup")
+        titulo.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout_raiz.addWidget(titulo)
+        layout_raiz.addSpacing(12)
+
         subtitulo = QLabel("Tem certeza que deseja sair?")
         subtitulo.setObjectName("subtitulo_popup")
-        tela_alinhamento.addWidget(titulo, alignment=Qt.AlignmentFlag.AlignCenter)
-        tela_alinhamento.addWidget(subtitulo, alignment=Qt.AlignmentFlag.AlignCenter)
+        subtitulo.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout_raiz.addWidget(subtitulo)
+
+        layout_raiz.addSpacing(24)
+
+        layout_botoes = QHBoxLayout()
+        layout_botoes.setSpacing(12)
 
         botao_cancelar = QPushButton("Cancelar")
         botao_cancelar.setObjectName("botao_cancelar_dialog")
+        botao_cancelar.setCursor(Qt.PointingHandCursor)
+        botao_cancelar.setFixedHeight(48)
         botao_cancelar.clicked.connect(tela_sair.reject)
 
         botao_confirmar = QPushButton("Confirmar")
         botao_confirmar.setObjectName("botao_confirmar_dialog")
+        botao_confirmar.setCursor(Qt.PointingHandCursor)
+        botao_confirmar.setFixedHeight(48)
         botao_confirmar.clicked.connect(tela_sair.accept)
 
         layout_botoes.addWidget(botao_cancelar)
         layout_botoes.addWidget(botao_confirmar)
-        tela_alinhamento.addLayout(layout_botoes)
+        layout_raiz.addLayout(layout_botoes)
 
         caminho_estilo = BASE_DIR / "estilo" / "estilo_sair.qss"
         if caminho_estilo.exists():
             with open(caminho_estilo, "r", encoding="utf-8") as arquivo:
                 tela_sair.setStyleSheet(arquivo.read())
 
+        geometria_pai = self.frameGeometry()
+        centro_pai = geometria_pai.center()
+        geometria_dialogo = tela_sair.frameGeometry()
+        geometria_dialogo.moveCenter(centro_pai)
+        tela_sair.move(geometria_dialogo.topLeft())
+
         if tela_sair.exec() == QDialog.DialogCode.Accepted:
             QApplication.quit()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
