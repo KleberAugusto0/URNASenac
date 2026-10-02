@@ -35,4 +35,3 @@ QPushButton#botao_ok_aviso {
 }
 QPushButton#botao_ok_aviso:hover   { background-color: #2E88FF; }
 QPushButton#botao_ok_aviso:pressed { background-color: #1266D6; }
-

@@ -1,37 +1,55 @@
-
-QMainWindow {
-    background-color: #13263C;
+QDialog#tela_sair {
+    background-color: #0B1A2E;
+    border: 1px solid #1F5F99;
+    border-radius: 12px;
 }
 
-
-QDialog, QMessageBox {
-    background-color: #05192F;
+QLabel#quadrado_icone {
+    background-color: #E53E3E;
+    border-radius: 42px;
 }
 
-
-QPushButton#btnInicial {
-    background-color: #056CE7;
-    color: #F0FDFF; 
+QLabel#titulo_popup {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+    background: transparent;
 }
 
-
-QPushButton#btnSaida {
-    background-color: #D62039;
-    color: #F0FDFF; 
+QLabel#subtitulo_popup {
+    color: #E6EDF5;
+    font-size: 13px;
+    background: transparent;
 }
 
-
-QPushButton#btnCancelar {
-    background-color: #334A68;
-    color: #F0FDFF; 
+QPushButton#botao_fechar_x {
+    background: transparent;
+    color: #FFFFFF;
+    font-size: 16px;
+    border: none;
+}
+QPushButton#botao_fechar_x:hover {
+    color: #8FB8E8;
 }
 
-
-QLabel#lblMenor, QStatusBar {
-    color: #93B9D6;
+QPushButton#botao_cancelar_dialog {
+    background-color: #3A4A63;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
 }
+QPushButton#botao_cancelar_dialog:hover   { background-color: #48597A; }
+QPushButton#botao_cancelar_dialog:pressed { background-color: #2E3B50; }
 
-
-QLabel#lblIconeConfirmado {
-    color: #2FA94B;
+QPushButton#botao_confirmar_dialog {
+    background-color: #E53E3E;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
 }
+QPushButton#botao_confirmar_dialog:hover   { background-color: #F05252; }
+QPushButton#botao_confirmar_dialog:pressed { background-color: #C53030; }

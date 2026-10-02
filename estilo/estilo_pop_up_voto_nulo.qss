@@ -9,35 +9,35 @@ QFrame#card_voto_nulo {
     border-radius: 12px;
 }
 
-QLabel#lbl_icone {
+QLabel#label_icone {
     background: transparent;
 }
 
-QLabel#lbl_titulo {
+QLabel#label_titulo {
     color: #F0FDFF;
     font-size: 20px;
     font-weight: bold;
     background: transparent;
 }
 
-QLabel#lbl_mensagem {
+QLabel#label_mensagem {
     color: #93B9D6;
     font-size: 13px;
     background: transparent;
 }
 
-QPushButton#btn_fechar {
+QPushButton#botao_fechar {
     background: transparent;
     color: #93B9D6;
     font-size: 16px;
     border: none;
 }
 
-QPushButton#btn_fechar:hover {
+QPushButton#botao_fechar:hover {
     color: #D62039;
 }
 
-QPushButton#btn_cancelar {
+QPushButton#botao_cancelar {
     background-color: #334A68;
     color: #F0FDFF;
     font-size: 14px;
@@ -48,12 +48,12 @@ QPushButton#btn_cancelar {
     min-height: 36px;
 }
 
-QPushButton#btn_cancelar:hover {
+QPushButton#botao_cancelar:hover {
     background-color: #425e83;
 }
 
  
-QPushButton#btn_confirmar {
+QPushButton#botao_confirmar {
     background-color: #056CE7;
     color: #F0FDFF;
     font-size: 14px;
@@ -64,10 +64,10 @@ QPushButton#btn_confirmar {
     min-height: 36px;
 }
 
-QPushButton#btn_confirmar:hover {
+QPushButton#botao_confirmar:hover {
     background-color: #2E88FF;
 }
 
-QPushButton#btn_confirmar:pressed {
+QPushButton#botao_confirmar:pressed {
     background-color: #1266D6;
 }

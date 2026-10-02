@@ -1,20 +1,8 @@
 import sys
 from pathlib import Path
-
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import (
-    QApplication,
-    QFrame,
-    QGridLayout,
-    QHBoxLayout,
-    QLabel,
-    QLineEdit,
-    QMainWindow,
-    QPushButton,
-    QVBoxLayout,
-    QWidget,
-)
+from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout, QLabel, QLineEdit, QMainWindow, QPushButton, QVBoxLayout, QWidget)
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -22,6 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent
 class TelaDeVotacao(QMainWindow):
 
     voto_confirmado = Signal(str)
+    voto_cancelado = Signal()
     VALOR_PADRAO = "00000"
 
     def __init__(self, parent=None):
@@ -29,6 +18,7 @@ class TelaDeVotacao(QMainWindow):
         self.setWindowTitle("Tela de Votação")
         self.setObjectName("tela_votacao")
         self.setFixedSize(380, 470)
+        self.setWindowModality(Qt.WindowModality.ApplicationModal)
 
         janela_central = QWidget()
         self.setCentralWidget(janela_central)
@@ -36,7 +26,6 @@ class TelaDeVotacao(QMainWindow):
         layout_principal.setContentsMargins(20, 20, 20, 20)
         layout_principal.setSpacing(16)
 
-        # --- CABEÇALHO ---
         layout_cabecalho = QHBoxLayout()
         layout_cabecalho.setContentsMargins(4, 0, 0, 0)
         layout_cabecalho.setSpacing(14)
@@ -139,6 +128,13 @@ class TelaDeVotacao(QMainWindow):
         self.carregar_estilo()
         self.atualizar_visor()
 
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key.Key_Escape:
+            self.voto_cancelado.emit()
+            self.close()
+            return
+        super().keyPressEvent(event)
+
     def _resolver_caminho(self, pastas: list, nome_arquivo: str) -> Path | None:
         for pasta in pastas:
             caminho = BASE_DIR.parent / pasta / nome_arquivo
@@ -183,8 +179,7 @@ class TelaDeVotacao(QMainWindow):
         self.visor.style().polish(self.visor)
 
     def confirmar_voto(self) -> None:
-        voto = self.digitos_digitados if self.digitos_digitados else self.VALOR_PADRAO
-        print(f"Voto confirmado: {voto}")
+        voto = self.digitos_digitados if self.digitos_digitados else "BRANCO"
         self.voto_confirmado.emit(voto)
 
 

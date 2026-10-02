@@ -1,45 +1,51 @@
-import os
 import sys
+from pathlib import Path
 from PySide6.QtCore import Qt, QTimer, QUrl
 from PySide6.QtGui import QPixmap
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
-from PySide6.QtWidgets import (
-    QApplication,
-    QDialog,
-    QFrame,
-    QHBoxLayout,
-    QLabel,
-    QPushButton,
-    QVBoxLayout,
-)
+from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout)
+
+try:
+    from .candidatos import Candidato
+except ImportError:
+    from candidatos import Candidato
+
+BASE_DIR = Path(__file__).resolve().parent
 
 
 class TelaConfirmacaoVoto(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, candidato: Candidato, parent=None):
         super().__init__(parent)
         self.setObjectName("tela_confirmar_candidato")
+        self.candidato = candidato
         self.setModal(True)
-        self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
         self.setFixedSize(420, 320)
-
-        
 
         self.reprodutor = QMediaPlayer(self)
         self.audio = QAudioOutput(self)
+        self.audio.setVolume(1.0)
         self.reprodutor.setAudioOutput(self.audio)
 
-        base_dir = os.path.dirname(os.path.abspath(__file__))
-        caminho_som = os.path.join(base_dir, "..", "efeitos_sonoros", "som_urna.mp3")
-        if not os.path.exists(caminho_som):
-            caminho_som = os.path.join(base_dir, "efeitos_sonoros", "som_urna.mp3")
-
-        self.reprodutor.setSource(QUrl.fromLocalFile(caminho_som))
+        caminho_som = BASE_DIR.parent / "efeitos_sonoros" / "som_urna.mp3"
+        if caminho_som.exists():
+            self.reprodutor.setSource(QUrl.fromLocalFile(str(caminho_som.resolve())))
 
         self.montar_interface()
+        self.carregar_estilo()
+
+    def carregar_estilo(self):
+        caminho = BASE_DIR.parent / "estilo" / "estilo_confirmar_candidato.qss"
+        if caminho.exists():
+            with open(caminho, "r", encoding="utf-8") as arquivo:
+                self.setStyleSheet(arquivo.read())
 
     def tocar_som_e_confirmar(self):
-        self.reprodutor.play()
-        QTimer.singleShot(1500, self.accept)
+        if self.reprodutor.source().isValid():
+            self.reprodutor.play()
+            QTimer.singleShot(1500, self.accept)
+        else:
+            self.accept()
 
     def montar_interface(self):
         layout_raiz = QVBoxLayout(self)
@@ -53,81 +59,82 @@ class TelaConfirmacaoVoto(QDialog):
         layout_card.setContentsMargins(20, 12, 20, 20)
         layout_card.setSpacing(0)
 
-        self.btn_fechar = QPushButton("✕")
-        self.btn_fechar.setObjectName("btn_fechar")
-        self.btn_fechar.setCursor(Qt.PointingHandCursor)
-        self.btn_fechar.setFixedSize(28, 28)
-        self.btn_fechar.clicked.connect(self.reject)
+        self.botao_fechar = QPushButton("✕")
+        self.botao_fechar.setObjectName("botao_fechar")
+        self.botao_fechar.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.botao_fechar.setFixedSize(28, 28)
+        self.botao_fechar.clicked.connect(self.reject)
 
         layout_topo = QHBoxLayout()
         layout_topo.addStretch()
-        layout_topo.addWidget(self.btn_fechar)
+        layout_topo.addWidget(self.botao_fechar)
         layout_card.addLayout(layout_topo)
 
-        self.lbl_icone = QLabel()
-        self.lbl_icone.setObjectName("lbl_icone")
-        self.lbl_icone.setAlignment(Qt.AlignCenter)
+        self.label_icone = QLabel()
+        self.label_icone.setObjectName("label_icone")
+        self.label_icone.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.label_icone.setFixedSize(64, 64)
 
-        pixmap_icone = QPixmap("imagens/") #Parametro que recebe a foto do candidato
-        self.lbl_icone.setPixmap(
-            pixmap_icone.scaled(64, 64, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-        )
+        caminho_foto = Path(self.candidato.foto)
+        if not caminho_foto.is_absolute():
+            caminho_foto = BASE_DIR.parent / caminho_foto
+        if caminho_foto.exists():
+            pixmap = QPixmap(str(caminho_foto))
+            if not pixmap.isNull():
+                self.label_icone.setPixmap(
+                    pixmap.scaled(
+                        64,
+                        64,
+                        Qt.AspectRatioMode.KeepAspectRatio,
+                        Qt.TransformationMode.SmoothTransformation,
+                    )
+                )
+        else:
+            self.label_icone.setText("Sem foto")
 
-        
-        layout_card.addWidget(self.lbl_icone, alignment=Qt.AlignHCenter)
+        layout_card.addWidget(self.label_icone, alignment=Qt.AlignmentFlag.AlignHCenter)
         layout_card.addSpacing(13)
 
-        self.lbl_titulo_candidato = QLabel("Candidato")
-        self.lbl_titulo_candidato.setObjectName("lbl_titulo")
-        self.lbl_titulo_candidato.setAlignment(Qt.AlignCenter)
-        layout_card.addWidget(self.lbl_titulo_candidato)
+        self.label_titulo_candidato = QLabel("Candidato")
+        self.label_titulo_candidato.setObjectName("label_titulo")
+        self.label_titulo_candidato.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout_card.addWidget(self.label_titulo_candidato)
         layout_card.addSpacing(10)
 
-        self.lbl_titulo = QLabel("Mateus") #Parametro do nome do candidato
-        self.lbl_titulo.setObjectName("lbl_titulo")
-        self.lbl_titulo.setAlignment(Qt.AlignCenter)
-        layout_card.addWidget(self.lbl_titulo)
+        self.label_titulo = QLabel(self.candidato.nome)
+        self.label_titulo.setObjectName("label_titulo")
+        self.label_titulo.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout_card.addWidget(self.label_titulo)
         layout_card.addSpacing(10)
 
-        self.lbl_mensagem = QLabel("13") #Parametro do numero 
-        self.lbl_mensagem.setObjectName("lbl_mensagem")
-        self.lbl_mensagem.setAlignment(Qt.AlignCenter)
-        layout_card.addWidget(self.lbl_mensagem)
+        self.label_mensagem = QLabel(self.candidato.numero)
+        self.label_mensagem.setObjectName("label_mensagem")
+        self.label_mensagem.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout_card.addWidget(self.label_mensagem)
 
         layout_card.addStretch()
 
         layout_botoes = QHBoxLayout()
+        layout_botoes.setSpacing(16)
 
-    
-        self.btn_cancelar = QPushButton("Cancelar")
+        self.botao_cancelar = QPushButton("Cancelar")
+        self.botao_cancelar.setObjectName("botao_cancelar")
+        self.botao_cancelar.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.botao_cancelar.clicked.connect(self.reject)
 
-        self.btn_cancelar.setObjectName("btn_cancelar")
-        self.btn_cancelar.setCursor(Qt.PointingHandCursor)
-        self.btn_cancelar.setDefault(False)
-        self.btn_cancelar.clicked.connect(self.reject)
+        self.botao_confirmar = QPushButton("Confirmar")
+        self.botao_confirmar.setObjectName("botao_confirmar")
+        self.botao_confirmar.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.botao_confirmar.setDefault(True)
+        self.botao_confirmar.clicked.connect(self.tocar_som_e_confirmar)
 
-        self.btn_confirmar = QPushButton("Confirmar")
-        self.btn_confirmar.setObjectName("btn_confirmar")
-        self.btn_confirmar.setCursor(Qt.PointingHandCursor)
-        self.btn_confirmar.setDefault(True)
-        self.btn_confirmar.clicked.connect(self.tocar_som_e_confirmar)
-
-
+        layout_botoes.addWidget(self.botao_cancelar)
+        layout_botoes.addWidget(self.botao_confirmar)
         layout_card.addLayout(layout_botoes)
-
-        layout_botoes.setSpacing(16)   # espaço entre os botões
-
-        layout_botoes.addWidget(self.btn_cancelar)
-        layout_botoes.addWidget(self.btn_confirmar)
-
-
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-
-    with open("estilo/estilo_confirmar_candidato.qss", encoding="utf-8") as arquivo:
-        app.setStyleSheet(arquivo.read())
-
-    tela_confirmacao = TelaConfirmacaoVoto()
+    teste = Candidato("002", "Barriguinha mole", "Presidente", "imagens/candidato_barriguinha_mole.webp")
+    tela_confirmacao = TelaConfirmacaoVoto(teste)
     tela_confirmacao.exec()

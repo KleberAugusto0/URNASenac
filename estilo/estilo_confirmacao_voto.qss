@@ -8,24 +8,24 @@ QFrame#card_confirmacao {
     border-radius: 12px;
 }
 
-QLabel#lbl_icone {
+QLabel#label_icone {
     background: transparent;
 }
 
-QLabel#lbl_titulo {
+QLabel#label_titulo {
     color: #F0FDFF;
     font-size: 20px;
     font-weight: bold;
     background: transparent;
 }
 
-QLabel#lbl_mensagem {
+QLabel#label_mensagem {
     color: #93B9D6;
     font-size: 13px;
     background: transparent;
 }
 
-QPushButton#btn_ok {
+QPushButton#botao_ok {
     background-color: #056CE7;
     color: #F0FDFF;
     font-size: 14px;
@@ -35,21 +35,21 @@ QPushButton#btn_ok {
     min-height: 36px;
 }
 
-QPushButton#btn_ok:hover {
+QPushButton#botao_ok:hover {
     background-color: #2E88FF;
 }
 
-QPushButton#btn_ok:pressed {
+QPushButton#botao_ok:pressed {
     background-color: #1266D6;
 }
 
-QPushButton#btn_fechar {
+QPushButton#botao_fechar {
     background: transparent;
     color: #93B9D6;
     font-size: 16px;
     border: none;
 }
 
-QPushButton#btn_fechar:hover {
+QPushButton#botao_fechar:hover {
     color: #D62039;
 }

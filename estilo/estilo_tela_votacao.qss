@@ -1,10 +1,8 @@
-/* Configuração base da janela */
 QMainWindow, QWidget#tela_votacao {
     background-color: #03162B;
     font-family: 'Segoe UI', -apple-system, sans-serif;
 }
 
-/* Cabeçalho */
 QLabel#tituloVotar {
     color: #F0FDFF;
     font-size: 19px;
@@ -66,7 +64,6 @@ QPushButton.botaoNumerico:pressed {
     background-color: #05192F;
 }
 
-/* Botão Limpar / Corrigir */
 QPushButton#botaoLimpar {
     background-color: #334A68;
     color: #F0FDFF;
@@ -84,7 +81,6 @@ QPushButton#botaoLimpar:pressed {
     background-color: #13263C;
 }
 
-/* Botão Confirmar */
 QPushButton#botaoConfirmar {
     background-color: #056CE7;
     color: #F0FDFF;
@@ -101,7 +97,6 @@ QPushButton#botaoConfirmar:hover {
 QPushButton#botaoConfirmar:pressed {
     background-color: #0052CC;
 }
-
 
 QPushButton:disabled {
     background-color: #122234;
