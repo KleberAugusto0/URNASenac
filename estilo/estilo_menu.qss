@@ -1,22 +1,69 @@
 QWidget {
-    background-color: #13263C;
+    background-color: #06182B;
 }
 
 QLabel {
     color: #F0FDFF;
 }
 
-
-QPushButton {
-    background-color: #056CE7;
-    color: #F0FDFF;
-    
-    text-align: AlignCenter;
+QLabel#icone_urna_menu {
+    background: transparent;
 }
 
+QLabel#titulo_urna_menu {
+    background: transparent;
+    color: #F0FDFF;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+QLabel#subtitulo_urna_menu {
+    background: transparent;
+    color: #A8C9F0;
+    font-size: 10px;
+}
+
+QPushButton#botao_menu, QPushButton#botao_sair {
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 47px;
+    border: none;
+    border-radius: 5px;
+}
+
+QPushButton#botao_menu {
+    background-color: #0875E5;
+}
+
+QPushButton#botao_menu:hover {
+    background-color: #1684F2;
+}
+
+QPushButton#botao_menu:pressed {
+    background-color: #0666C8;
+}
+
+QPushButton#botao_menu:disabled {
+    background-color: #3A6F9F;
+    color: #D6E2EC;
 }
 
 QPushButton#botao_sair {
-    background-color: #D62039;
-    color: #F0FDFF;
+    background-color: #E21D3A;
+}
+
+QPushButton#botao_sair:hover {
+    background-color: #EF2946;
+}
+
+QPushButton#botao_sair:pressed {
+    background-color: #C91530;
+}
+
+QLabel#versao_menu {
+    background: transparent;
+    color: #8EA9C3;
+    font-size: 9px;
 }

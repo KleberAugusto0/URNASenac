@@ -1,9 +1,9 @@
 import os
 import sys
 from pathlib import Path
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QSize as Tamanho, QEvent, QObject
 from PySide6.QtGui import QPixmap,QIcon
-from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget, QToolButton, QComboBox, QCheckBox, QRadioButton)
 from backend.urna import Urna
 from backend.pop_up_aviso_da_zeressima import TelaAvisoZeresima
 from backend.pop_up_voto_nulo import TelaVotoNulo
@@ -14,6 +14,22 @@ from backend.tela_votacao import TelaDeVotacao
 from backend.tela_zeresima import TelaZerezima
 
 BASE_DIR = Path(__file__).resolve().parent
+
+
+class CursorBotoes(QObject):
+
+    def eventFilter(self, objeto, evento):
+        if evento.type() == QEvent.Type.Enter and isinstance(
+            objeto, (QPushButton, QToolButton, QComboBox, QCheckBox, QRadioButton)
+        ):
+            objeto.setCursor(Qt.CursorShape.PointingHandCursor)
+        return super().eventFilter(objeto, evento)
+
+
+def ativar_cursor_botoes(aplicacao):
+    filtro_cursor = CursorBotoes(aplicacao)
+    aplicacao.installEventFilter(filtro_cursor)
+    aplicacao._filtro_cursor_botoes = filtro_cursor
 
 
 class TelaRelatorioFinal(TelaZerezima):
@@ -29,42 +45,85 @@ class MenuUrna(QWidget):
         self.janela_aberta = None
         self.montar_interface()
         self.carregar_estilo()
+        self.botao_zerezima.setEnabled(not self.urna.zeresima_emitida)
 
     def montar_interface(self):
         layout = QVBoxLayout(self)
-        layout.addStretch(1)
+        layout.setContentsMargins(40, 16, 30, 12)
+        layout.setSpacing(8)
 
-        txt_urna = QLabel("Urna Eletrônica")
-        txt_urna.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout.addWidget(txt_urna)
+        layout_cabecalho = QHBoxLayout()
+        layout_cabecalho.setContentsMargins(0, 0, 0, 0)
+        layout_cabecalho.setSpacing(10)
 
-        self.botao_zerezima = QPushButton("Relatório inicial (Zerésima)")
-        self.botao_zerezima.setFixedSize(250, 50)
+        icone_urna = QLabel()
+        icone_urna.setObjectName("icone_urna_menu")
+        icone_urna.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        icone_urna.setFixedSize(50, 50)
+        caminho_icone_urna = BASE_DIR / "imagens" / "voting-box.png"
+        if caminho_icone_urna.exists():
+            icone_urna.setPixmap(
+                QPixmap(str(caminho_icone_urna)).scaled(
+                    50, 50,
+                    Qt.AspectRatioMode.KeepAspectRatio,
+                    Qt.TransformationMode.SmoothTransformation,
+                )
+            )
+        layout_cabecalho.addWidget(icone_urna)
+
+        layout_textos = QVBoxLayout()
+        layout_textos.setContentsMargins(0, 0, 0, 0)
+        layout_textos.setSpacing(2)
+
+        txt_urna = QLabel("URNA ELETRÔNICA")
+        txt_urna.setObjectName("titulo_urna_menu")
+        layout_textos.addWidget(txt_urna)
+
+        subtitulo_urna = QLabel("Sistema de Votação")
+        subtitulo_urna.setObjectName("subtitulo_urna_menu")
+        layout_textos.addWidget(subtitulo_urna)
+
+        layout_cabecalho.addLayout(layout_textos)
+        layout_cabecalho.addStretch()
+        layout.addLayout(layout_cabecalho)
+
+        layout.addSpacing(9)
+
+        self.botao_zerezima = QPushButton("ZERESSIMA")
+        self.botao_zerezima.setObjectName("botao_menu")
+        self.botao_zerezima.setFixedSize(260, 43)
         self.botao_zerezima.clicked.connect(self.emitir_zeresima)
         self.botao_zerezima.setIcon(QIcon(str(BASE_DIR / "imagens" / "icone_documento.png")))
+        self.botao_zerezima.setIconSize(Tamanho(25, 25))
         layout.addWidget(self.botao_zerezima, alignment=Qt.AlignmentFlag.AlignCenter)
 
-        self.botao_votar = QPushButton("Votar")
-        self.botao_votar.setFixedSize(250, 50)
+        self.botao_votar = QPushButton("VOTAR")
+        self.botao_votar.setObjectName("botao_menu")
+        self.botao_votar.setFixedSize(260, 43)
         self.botao_votar.clicked.connect(self.votar)
-        layout.addWidget(self.botao_votar, alignment=Qt.AlignmentFlag.AlignCenter)
         self.botao_votar.setIcon(QIcon(str(BASE_DIR / "imagens" / "voting-box.png")))
+        self.botao_votar.setIconSize(Tamanho(25, 25))
+        layout.addWidget(self.botao_votar, alignment=Qt.AlignmentFlag.AlignCenter)
 
-        self.botao_relatorio = QPushButton("Relatório Final")
-        self.botao_relatorio.setFixedSize(250, 50)
+        self.botao_relatorio = QPushButton("RELATÓRIO FINAL")
+        self.botao_relatorio.setObjectName("botao_menu")
+        self.botao_relatorio.setFixedSize(260, 43)
         self.botao_relatorio.clicked.connect(self.relatorio)
-        layout.addWidget(self.botao_relatorio, alignment=Qt.AlignmentFlag.AlignCenter)
         self.botao_relatorio.setIcon(QIcon(str(BASE_DIR / "imagens" / "icone_grafico.png")))
+        self.botao_relatorio.setIconSize(Tamanho(25, 25))
+        layout.addWidget(self.botao_relatorio, alignment=Qt.AlignmentFlag.AlignCenter)
 
-        self.botao_sair = QPushButton("Sair")
+        self.botao_sair = QPushButton("SAIR")
         self.botao_sair.setObjectName("botao_sair")
-        self.botao_sair.setFixedSize(250, 50)
+        self.botao_sair.setFixedSize(260, 43)
         self.botao_sair.clicked.connect(self.sair_do_sistema)
         self.botao_sair.setIcon(QIcon(str(BASE_DIR / "imagens" / "sair.png")))
+        self.botao_sair.setIconSize(Tamanho(25, 25))
         layout.addWidget(self.botao_sair, alignment=Qt.AlignmentFlag.AlignCenter)
 
         layout.addStretch(1)
-        self.setFixedSize(500, 500)
+
+        self.setFixedSize(354, 306)
 
     def carregar_estilo(self):
         caminho = BASE_DIR / "estilo" / "estilo_menu.qss"
@@ -73,6 +132,13 @@ class MenuUrna(QWidget):
                 self.setStyleSheet(arquivo.read())
 
     def emitir_zeresima(self):
+        if self.urna.zeresima_emitida:
+            TelaAvisoZeresima(
+                parent=self,
+                titulo="Zerésima já emitida",
+                mensagem="A Zerésima já foi emitida e não pode\nser emitida novamente.").exec()
+            return
+
         if self.urna.urna_encerrada:
             TelaAvisoZeresima(
                 parent=self,
@@ -80,7 +146,10 @@ class MenuUrna(QWidget):
                 mensagem="Não é possível emitir a Zerésima porque\no Relatório Final já foi emitido.").exec()
             return
 
-        self.urna.emitir_zeresima()
+        if not self.urna.emitir_zeresima():
+            return
+
+        self.botao_zerezima.setEnabled(False)
         tela = TelaZerezima(self.urna, parent=self)
         self.janela_aberta = tela
         tela.exec()
@@ -250,6 +319,7 @@ class MenuUrna(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    ativar_cursor_botoes(app)
     caminho_estilo = BASE_DIR / "estilo" / "estilo_menu.qss"
     if caminho_estilo.exists():
         with open(caminho_estilo, "r", encoding="utf-8") as arquivo:

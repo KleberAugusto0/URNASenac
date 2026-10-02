@@ -17,7 +17,7 @@ class Urna:
         return self.eleitores_backend.eleitores
 
     def emitir_zeresima(self) -> bool:
-        if self.urna_encerrada:
+        if self.urna_encerrada or self.zeresima_emitida:
             return False
 
         self.zeresima_emitida = True

@@ -30,6 +30,7 @@ class TelaZerezima(QDialog):
 
         self.votos_brancos = urna.votos_brancos if urna else 0
         self.votos_nulos = urna.votos_nulos if urna else 0
+        self.total_votos = sum(self.cand_votos) + self.votos_brancos + self.votos_nulos
 
         self.configurar_interface()
         self.carregar_estilo()
@@ -44,6 +45,12 @@ class TelaZerezima(QDialog):
         caixa = QWidget()
         caixa.setObjectName("caixa_informacoes")
         return caixa
+
+    def calcular_porcentagem(self, votos):
+        if self.total_votos == 0:
+            return "0,00%"
+        porcentagem = (votos / self.total_votos) * 100
+        return f"{porcentagem:.2f}%".replace(".", ",")
 
     def configurar_interface(self):
         layout_principal = QVBoxLayout(self)
@@ -109,12 +116,17 @@ class TelaZerezima(QDialog):
         for i in range(len(self.cand_nomes)):
             texto = (
                 f"{self.cand_numeros[i]} - {self.cand_nomes[i]} "
-                f"({self.cand_partidos[i]}) ... {self.cand_votos[i]} votos")
+                f"({self.cand_partidos[i]}) ... {self.cand_votos[i]} votos "
+                f"({self.calcular_porcentagem(self.cand_votos[i])})")
             layout_cand.addWidget(self._label(texto, "texto_informacao"))
 
         layout_cand.addSpacing(10)
-        layout_cand.addWidget(self._label(f"Votos em branco ... {self.votos_brancos}", "texto_informacao"))
-        layout_cand.addWidget(self._label(f"Votos nulos ... {self.votos_nulos}", "texto_informacao"))
+        layout_cand.addWidget(self._label(
+            f"Votos em branco ... {self.votos_brancos} votos ({self.calcular_porcentagem(self.votos_brancos)})",
+            "texto_informacao"))
+        layout_cand.addWidget(self._label(
+            f"Votos nulos ... {self.votos_nulos} votos ({self.calcular_porcentagem(self.votos_nulos)})",
+            "texto_informacao"))
         layout_cand.addStretch()
 
         caixa_eleit = self._caixa()
