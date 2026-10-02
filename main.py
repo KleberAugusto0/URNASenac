@@ -89,7 +89,7 @@ class MenuUrna(QWidget):
 
         layout.addSpacing(9)
 
-        self.botao_zerezima = QPushButton("ZERESSIMA")
+        self.botao_zerezima = QPushButton("ZERÉSIMA")
         self.botao_zerezima.setObjectName("botao_menu")
         self.botao_zerezima.setFixedSize(260, 43)
         self.botao_zerezima.clicked.connect(self.emitir_zeresima)
