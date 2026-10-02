@@ -2,7 +2,8 @@ import sys
 from pathlib import Path
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel, QLineEdit, QPushButton, QVBoxLayout, QDialog, QMessageBox)
+from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel, QLineEdit, QPushButton, QVBoxLayout, QDialog)
+from backend.pop_up_aviso_da_zeressima import TelaAvisoZeresima
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -93,7 +94,10 @@ class TelaTituloEleitor(QDialog):
     def confirmar(self):
         titulo = self.inp_titulo.text().strip()
         if not titulo:
-            QMessageBox.warning(self, "Título de eleitor", "Digite o número do título de eleitor.")
+            TelaAvisoZeresima(
+                parent=self,
+                titulo="Título de Eleitor",
+                mensagem="Digite o número do título de eleitor.").exec()
             return
         self.titulo_confirmado.emit(titulo)
 

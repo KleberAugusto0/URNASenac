@@ -109,8 +109,7 @@ class TelaZerezima(QDialog):
         for i in range(len(self.cand_nomes)):
             texto = (
                 f"{self.cand_numeros[i]} - {self.cand_nomes[i]} "
-                f"({self.cand_partidos[i]}) ... {self.cand_votos[i]} votos"
-            )
+                f"({self.cand_partidos[i]}) ... {self.cand_votos[i]} votos")
             layout_cand.addWidget(self._label(texto, "texto_informacao"))
 
         layout_cand.addSpacing(10)

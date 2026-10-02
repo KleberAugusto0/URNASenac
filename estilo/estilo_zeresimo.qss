@@ -30,7 +30,7 @@ QLabel#data_zerezima {
 }
 
 QWidget#caixa_informacoes {
-    background-color: transparent;
+    background-color: #0F2034;
     border: 1px solid #122c54;
     border-radius: 8px;
 }

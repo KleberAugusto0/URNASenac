@@ -8,13 +8,15 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 class TelaAvisoZeresima(QDialog):
-    def __init__(self, acao="votar", parent=None):
+    def __init__(self, acao="votar", parent=None, titulo="Atenção", mensagem=None):
         super().__init__(parent)
         self.setObjectName("tela_aviso")
         self.setModal(True)
         self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
         self.setFixedSize(420, 320)
         self.acao = acao
+        self.titulo = titulo
+        self.mensagem = mensagem
         self.montar_interface()
         self.carregar_estilo()
 
@@ -45,14 +47,17 @@ class TelaAvisoZeresima(QDialog):
         layout_card.addWidget(self.label_icone, alignment=Qt.AlignmentFlag.AlignHCenter)
         layout_card.addSpacing(12)
 
-        self.label_titulo = QLabel("Atenção")
+        self.label_titulo = QLabel(self.titulo)
         self.label_titulo.setObjectName("label_titulo_aviso")
         self.label_titulo.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout_card.addWidget(self.label_titulo)
         layout_card.addSpacing(12)
 
-        acao_texto = "votar" if self.acao == "votar" else "emitir o Relatório Final"
-        self.label_mensagem = QLabel(f"Você precisa realizar a Zerésima\nantes de poder {acao_texto}.")
+        if self.mensagem is None:
+            acao_texto = "votar" if self.acao == "votar" else "emitir o Relatório Final"
+            self.mensagem = f"Você precisa realizar a Zerésima\nantes de poder {acao_texto}."
+
+        self.label_mensagem = QLabel(self.mensagem)
         self.label_mensagem.setObjectName("label_mensagem_aviso")
         self.label_mensagem.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout_card.addWidget(self.label_mensagem)
