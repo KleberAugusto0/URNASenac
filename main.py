@@ -51,21 +51,25 @@ class MenuUrna(QWidget):
         self.botao_zerezima.setFixedSize(250, 50)
         self.botao_zerezima.clicked.connect(self.emitir_zeresima)
         layout.addWidget(self.botao_zerezima, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.botao_zerezima.setCursor(Qt.CursorShape.PointingHandCursor)
 
         self.botao_votar = QPushButton("Votar")
         self.botao_votar.setFixedSize(250, 50)
         self.botao_votar.clicked.connect(self.votar)
         layout.addWidget(self.botao_votar, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.botao_votar.setCursor(Qt.CursorShape.PointingHandCursor)
 
         self.botao_relatorio = QPushButton("Relatório Final")
         self.botao_relatorio.setFixedSize(250, 50)
         self.botao_relatorio.clicked.connect(self.relatorio)
         layout.addWidget(self.botao_relatorio, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.botao_relatorio.setCursor(Qt.CursorShape.PointingHandCursor)
 
         self.botao_sair = QPushButton("Sair")
         self.botao_sair.setObjectName("botao_sair")
         self.botao_sair.setFixedSize(250, 50)
         self.botao_sair.clicked.connect(self.sair_do_sistema)
+        self.botao_sair.setCursor(Qt.CursorShape.PointingHandCursor)
         layout.addWidget(self.botao_sair, alignment=Qt.AlignmentFlag.AlignCenter)
 
         layout.addStretch(1)

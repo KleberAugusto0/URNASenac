@@ -162,6 +162,7 @@ class TelaZerezima(QDialog):
         botao_voltar.setObjectName("btn_voltar_zerezima")
         botao_voltar.setFixedSize(260, 70)
         botao_voltar.clicked.connect(self.close)
+        botao_voltar.setCursor(Qt.CursorShape.PointingHandCursor)
         layout_botoes.addWidget(botao_voltar)
 
         layout_painel.addSpacing(20)
