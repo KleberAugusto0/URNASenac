@@ -16,9 +16,17 @@ class Urna:
     def eleitores(self):
         return self.eleitores_backend.eleitores
 
-    def emitir_zeresima(self) -> None:
+    def emitir_zeresima(self) -> bool:
+        if self.urna_encerrada:
+            return False
+
         self.zeresima_emitida = True
         self.eleitores_backend.zeresima_emitida = True
+        return True
+
+    def encerrar_urna(self) -> None:
+        self.urna_encerrada = True
+        self.eleitores_backend.urna_encerrada = True
 
     def validar_eleitor(self, titulo: str) -> tuple[bool, str]:
         self.eleitores_backend.zeresima_emitida = self.zeresima_emitida

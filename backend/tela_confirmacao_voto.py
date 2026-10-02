@@ -1,9 +1,7 @@
 import sys
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import (
-    QApplication, QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout
-)
+from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout)
 
 
 class TelaConfirmacaoVoto(QDialog):

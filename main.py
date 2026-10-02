@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap,QIcon
-from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QMessageBox, QWidget)
+from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget)
 from backend.urna import Urna
 from backend.pop_up_aviso_da_zeressima import TelaAvisoZeresima
 from backend.pop_up_voto_nulo import TelaVotoNulo
@@ -73,6 +73,13 @@ class MenuUrna(QWidget):
                 self.setStyleSheet(arquivo.read())
 
     def emitir_zeresima(self):
+        if self.urna.urna_encerrada:
+            TelaAvisoZeresima(
+                parent=self,
+                titulo="Zerésima",
+                mensagem="Não é possível emitir a Zerésima porque\no Relatório Final já foi emitido.").exec()
+            return
+
         self.urna.emitir_zeresima()
         tela = TelaZerezima(self.urna, parent=self)
         self.janela_aberta = tela
@@ -85,6 +92,13 @@ class MenuUrna(QWidget):
         return True
 
     def votar(self):
+        if self.urna.urna_encerrada:
+            TelaAvisoZeresima(
+                parent=self,
+                titulo="Votação",
+                mensagem="Não é possível votar porque o Relatório Final\njá foi emitido e a urna está encerrada.").exec()
+            return
+
         if not self.verificar_zeresima("votar"):
             return
 
@@ -96,7 +110,10 @@ class MenuUrna(QWidget):
     def validar_titulo(self, tela_titulo, titulo):
         valido, mensagem = self.urna.validar_eleitor(titulo)
         if not valido:
-            QMessageBox.warning(tela_titulo, "Votação", mensagem)
+            TelaAvisoZeresima(
+                parent=tela_titulo,
+                titulo="Votação",
+                mensagem=mensagem).exec()
             return
 
         tela_titulo.accept()
@@ -109,6 +126,14 @@ class MenuUrna(QWidget):
         tela_votacao.show()
 
     def processar_voto(self, titulo, numero, tela_votacao):
+        if self.urna.urna_encerrada:
+            tela_votacao.close()
+            TelaAvisoZeresima(
+                parent=self,
+                titulo="Votação",
+                mensagem="Não é possível registrar o voto porque o Relatório Final\njá foi emitido e a urna está encerrada.").exec()
+            return
+
         if numero == "BRANCO":
             tela_votacao.close()
             self.urna.registrar_voto_branco(titulo)
@@ -134,6 +159,8 @@ class MenuUrna(QWidget):
     def relatorio(self):
         if not self.verificar_zeresima("relatório final"):
             return
+
+        self.urna.encerrar_urna()
         tela = TelaRelatorioFinal(self.urna, parent=self)
         self.janela_aberta = tela
         tela.exec()
